@@ -1,59 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CSC2031</title>
-    <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
 
-    <style>
-    .table {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    </style>
 
-    <section class="hero is-primary is-fullheight">
+<body class="backgroundImage">
+    <div class="topnav">
 
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
+        {#Navigation bar#}
+        <nav>
+            <ul class="topnav">
 
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                       <div class="navbar-end">
-                            <a href="{{ url_for('index') }}" class="navbar-item">
-                               Home
-                            </a>
+                <li class="topnav-right">
+                    <a href="{{ url_for('students.register') }}" class="navbar-item">Register</a>
+                </li>
 
-                                <a href="" class="navbar-item">
-                                    Login
-                                </a>
-                                <a href="{{ url_for('students.register') }}" class="navbar-item">
-                                    Register
-                                </a>
+                <li class="topnav-right">
+                    <a href="login.html">Login</a>
+                </li>
 
-                                <a href="" class="navbar-item">
-                                    Logout
-                                </a>
+                <li><a href="TurtleSwim.html">Turtle Swim</a></li>
+                <li><a href="#">Game option #2</a></li>
+            </ul>
+        </nav>
+    </div>
 
-                       </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
+    {% block content %}
+    {% endblock %}
 
-        <div class="hero-body">
-            <div class="container has-text-centered">
-               {% block content %}
-               {% endblock %}
-            </div>
-        </div>
-    </section>
 </body>
 
 </html>
