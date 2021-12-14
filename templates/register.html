@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="column is-5 is-offset-4">
-        <h3 class="title is-3">Register</h3>
-        <div class="box">
+
+    <div class="register">
+        <p class="loginfield" id='name' ><b>Register</b></p>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     <div class="notification is-danger">
@@ -11,50 +11,35 @@
                     </div>
                 {% endif %}
             {% endwith %}
+
             <form method="POST">
-                <div class="field">
+                <div class="loginfield">
                     {{ form.csrf_token() }}
-                    <div class="control">
                         {{ form.username(class="input", placeholder="Username") }}
-                    </div>
                 </div>
-                <div class="field">
-                    <div class="control">
+                <div class="loginfield">
                         {{ form.firstname(class="input", placeholder="First Name") }}
-                    </div>
                 </div>
-                <div class="field">
-                    <div class="control">
+                <div class="loginfield">
                         {{ form.lastname(class="input", placeholder="Last Name") }}
-                    </div>
                 </div>
-                <div class="field">
-                    <div class="control">
+                <div class="loginfield">
                         {{ form.password(class="input", placeholder="Password") }}
-                    </div>
                 </div>
-                <div class="field">
-                    <div class="control">
+                <div class="loginfield">
                         {{ form.confirm_password(class="input", placeholder="Confirm Password") }}
-                    </div>
                 </div>
-                <div class="field">
-                    <div class="control">
+                <div class="loginfield">
                         {{ form.sic(class="input", placeholder="SIC (School Individual Code") }}
-                    </div>
                 </div>
-                <div class="field">
-                    <div class="control">
+                <div class="loginfield">
                         {{ form.teacher_id(class="input", placeholder="Teacher ID") }}
-                    </div>
                 </div>
 
-
-
-                <div>
-                    {{ form.submit(class="button is-info is-centered") }}
+                <div class="center">
+                    {{ form.submit(class="button1") }}
                 </div>
             </form>
         </div>
-    </div>
+
 {% endblock %}
