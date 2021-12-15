@@ -28,7 +28,7 @@ body {
 .register {
     background-color: rgba(201,248,255,255);
     color: blue;
-    height: 560px;
+    height: 420px;
     width: 280px;
     top: 50%;
     left: 50%;
@@ -64,7 +64,7 @@ body {
 	width: 90%;
 }
 
-.loginfield p {
+p{
 	font-size: 30px;
 	color: rgba(21, 56, 84, 255);
 }
