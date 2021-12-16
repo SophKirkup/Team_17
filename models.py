@@ -24,3 +24,52 @@ class Student(db.Model, UserMixin):
         self.SIC = SIC
         self.Password = Password
         self.Username = Username
+
+
+class Teacher(db.Model, UserMixin):
+    __tablename__ = 'Teachers'
+
+    TeacherID = db.Column(db.Integer, primary_key=True)
+
+    SIC = db.Column(db.String(20), nullable=False)
+    FirstName = db.Column(db.String(20), nullable=False)
+    LastName = db.Column(db.String(20), nullable=False)
+    Email = db.Column(db.String(50), nullable=False)
+
+    def __init__(self, SIC, FirstName, LastName, Email):
+        self.SIC = SIC
+        self.FirstName = FirstName
+        self.LastName = LastName
+        self.Email = Email
+
+
+class School(db.Model, UserMixin):
+    __tablename__ = 'Schools'
+
+    SIC = db.Column(db.String(20), primary_key=True)
+
+    SchoolName = db.Column(db.String(100), nullable=False)
+    TotalPoints = db.Column(db.Integer, nullable=True)
+
+    def __init__(self, SchoolName):
+        self.SchoolName = SchoolName
+        self.TotalPoints = None
+
+
+class Parent(db.model, UserMixin):
+    __tablename__ = 'Parents'
+
+    ParentID = db.Column(db.Integer, primary_key=True)
+
+    FirstName = db.Column(db.String(20), nullable=False)
+    LastName = db.Column(db.String(50), nullable=False)
+    SIC = db.Column(db.String(20), nullable=False)
+    StudentID = db.Column(db.Integer, nullable=False)
+    Email = db.Column(db.String(50), nullable=False)
+
+    def __init__(self, FirstName, LastName, SIC, StudentID, Email):
+        self.FirstName = FirstName
+        self.LastName = LastName
+        self.SIC = SIC
+        self.StudentID = StudentID
+        self. Email = Email
