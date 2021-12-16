@@ -6,7 +6,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import current_user
 
 from app import db
-from models import Student
+from models import Student, Teacher, School
 from students.forms import RegisterForm
 
 # CONFIG
@@ -22,12 +22,22 @@ def register():
 
     # if request method is POST or form is valid
     if form.validate_on_submit():
+        # if username already exists redirect user back to signup page with error message so user can try again
         user = Student.query.filter_by(Username=form.username.data).first()
-        # if this returns a user, then the email already exists in database
-
-        # if email already exists redirect user back to signup page with error message so user can try again
         if user:
-            flash('Username already exists')
+            flash('Username already exists, go to the login page')
+            return render_template('register.html', form=form)
+
+        # if teacher id doesn't exist, then the user can't register
+        teacher = Teacher.query.filter_by(TeacherID=form.teacher_id.data).first()
+        if not teacher:
+            flash('That Teacher ID does not exist')
+            return render_template('register.html', form=form)
+
+        # if sic doesn't exits, then the user can't register
+        sic = School.query.filter_by(SIC=form.sic.data).first()
+        if not sic:
+            flash('That SIC does not exist')
             return render_template('register.html', form=form)
 
         # create a new user with the form data
