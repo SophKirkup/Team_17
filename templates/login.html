@@ -2,6 +2,21 @@
 
 {% block content %}
 
-    <h3 class="title is-3">Login</h3>
+    <div class="login">
+        <p class="loginfield" id='name' ><b>Login</b></p>
 
+         <form method="POST">
+                    <div class="loginfield">
+                        {{ form.csrf_token() }}
+                            {{ form.username(class="input", placeholder="Username") }}
+                    </div>
+
+                    <div class="loginfield">
+                            {{ form.password(class="input", placeholder="Password") }}
+                    </div>
+                    <div class="center">
+                        {{ form.submit(class="button1") }}
+                    </div>
+        </form>
+    </div>
 {% endblock %}

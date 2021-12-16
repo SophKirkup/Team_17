@@ -21,10 +21,13 @@
                 </li>
 
                 <li class="topnav-right">
-                    <a href="login.html">Login</a>
+                    <a href="{{ url_for('students.login') }}" class="navbar-item">Login</a>
                 </li>
 
-                <li><a href="TurtleSwim.html">Turtle Swim</a></li>
+                <li>
+                    <a href="{{ url_for('students.turtleGame') }}">Turtle Swim</a>
+                </li>
+
                 <li><a href="#">Game option #2</a></li>
             </ul>
         </nav>

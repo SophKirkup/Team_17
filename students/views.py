@@ -52,3 +52,8 @@ def register():
 @users_blueprint.route('/login')
 def login():
     return render_template('login.html')
+
+# view turtle game
+@users_blueprint.route('/turtleGame')
+def turtleGame():
+    return render_template('turtleGame.html')
