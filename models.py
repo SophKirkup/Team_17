@@ -56,7 +56,7 @@ class School(db.Model, UserMixin):
         self.TotalPoints = None
 
 
-class Parent(db.model, UserMixin):
+class Parent(db.Model, UserMixin):
     __tablename__ = 'Parents'
 
     ParentID = db.Column(db.Integer, primary_key=True)
