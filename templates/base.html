@@ -20,13 +20,18 @@
         </form>
     </div>
 
+    <div class="dropdown">
+        <form action="{{ url_for('students.index') }}">
+            <button type="submit" >Home page</button>
+        </form>
+    </div>
 
     <div class="dropdown">
         <button class="loginSize">Login</button>
         <div class="dropdown-content">
-            <a class="loginLink" href="{{ url_for('students.login') }}">Student login</a>
-            <a class="loginLink" href="{{ url_for('students.login') }}">Teacher login</a>
-            <a class="loginLink" href="{{ url_for('students.login') }}">Parent login</a>
+            <a class="loginLink" href="{{ url_for('students.studentLogin') }}">Student login</a>
+            <a class="loginLink" href="{{ url_for('students.teacherLogin') }}">Teacher login</a>
+            <a class="loginLink" href="{{ url_for('students.parentLogin') }}">Parent login</a>
         </div>
     </div>
 
@@ -39,43 +44,6 @@
         </div>
     </div>
 </div>
-
-{#<nav>#}
-{#    <ul>#}
-{#        <li><a href="#">Login</a>#}
-{#            <ul>#}
-{#                <li><a href="#">Teacher</a></li>#}
-{#                <li><a href="#">Parent</a></li>#}
-{#                <li><a href="#">Student</a></li>#}
-{#            </ul>#}
-{#        </li>#}
-{#        <li><a href="#">Register</a></li>#}
-{#        <li><a href="#">Game</a></li>#}
-{#    </ul>#}
-{#</nav>#}
-
-{#        <nav>#}
-{#            <ul class="topnav">#}
-{#                <li class="topnav-right">#}
-{#                    <a href="{{ url_for('students.register') }}" class="navbar-item">Register</a>#}
-{#                </li>#}
-{##}
-{#                <li class="topnav-right">#}
-{#                    <div class="loginDropdown">#}
-{#                        <a href="{{ url_for('students.login') }}" class="navbar-item dropdown">Login</a>#}
-{#                            <a class="loginLink" href="{{ url_for('students.login') }}">Link 1</a>#}
-{#                            <a class="loginLink" href="{{ url_for('students.login') }}">Link 2</a>#}
-{#                            <a class="loginLink" href="{{ url_for('students.login') }}">Link 3</a>#}
-{#                    </div>#}
-{#                </li>#}
-{##}
-{#                <li>#}
-{#                    <a href="{{ url_for('students.turtleGame') }}" class="navbar-item" >Turtle Swim </a>#}
-{#                </li>#}
-{##}
-{#                <li><a href="#" class="navbar-item" >Game option #2</a></li>#}
-{#            </ul>#}
-{#        </nav>#}
 
     {% block content %}
     {% endblock %}
