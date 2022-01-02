@@ -219,7 +219,8 @@ button:hover {
     font-size: 20px;
     background-color: transparent;
     height: 40px;
-    width: 93%;
+    width: 93.5%;
+    text-align: left;
 }
 
 .nav a:hover {
@@ -261,4 +262,8 @@ button:hover {
 
 .buttonAllign {
     padding-right: 28px;
+}
+
+.allignRight{
+    text-align: right;
 }
