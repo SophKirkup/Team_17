@@ -39,6 +39,22 @@ body {
     border-radius: 3%;
 }
 
+.welcome {
+    background-color: rgba(201,248,255,255);
+    color: black;
+    font-size: 20px;
+    height: 280px;
+    width: 490px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border: 9px solid rgba(37,97,147,255);
+    padding: 10px;
+    box-shadow: 5px 10px rgba(29,74,112,255);
+    border-radius: 3%;
+}
+
 .loginImage {
 	width: 100px;
 	height: 100px;
@@ -99,50 +115,6 @@ input[type="password"] {
 	height: 25px;
 }
 
-
-/*nav {*/
-/*	width: 100%;*/
-/*	margin: 0;*/
-/*}*/
-
-/*nav ul {*/
-/*	overflow: hidden;*/
-/*	margin: 0;*/
-/*	padding: 0;*/
-/*}*/
-
-/*!* Floats navigation from left to right *!*/
-/*ul.topnav li {*/
-/*	list-style: none;*/
-/*	float: left;*/
-/*}*/
-
-/*!* Floats navigation bar from right to left *!*/
-/*ul.topnav li.topnav-right {*/
-/*	float: right;*/
-/*}*/
-
-/*!* Targets the anchor *!*/
-/*ul.topnav li a {*/
-/*	text-decoration: none;*/
-/*	min-height: 16px;*/
-/*	text-align: center;*/
-/*	padding: 14px;*/
-/*	color: black;*/
-/*}*/
-
-
-/*.navbar-item{*/
-/*    display: block;*/
-/*}*/
-
-/*!* Action for an item - hover effect *!*/
-/*ul.topnav li a:hover {*/
-/*    background-color: #0080ff;*/
-/*    color: #fff;*/
-/*}*/
-
-
 .horizontalAlign{
     text-align: center;
 }
@@ -185,67 +157,10 @@ iframe{
     position: absolute;
 }
 
-
-
-/*.loginLink{*/
-/*    display: none;*/
-/*    position: relative;*/
-/*    background-color: #f1f1f1;*/
-/*    background:rgba(0, 0, 0, 0.5);*/
-/*    width: 43px;*/
-/*}*/
-
-/*.loginDropdown:hover .loginLink{*/
-/*    display: block;*/
-/*    background-color: #f1f1f1;*/
-/*}*/
-
-
-
-/*nav {*/
-/*    width: 100%;*/
-/*    height: 40px;*/
-/*    background-color: white;*/
-/*}*/
-
-/*nav ul {*/
-/*    float: right;*/
-/*}*/
-
-/*nav ul li {*/
-/*    float: right;*/
-/*    list-style: none;*/
-/*    position: relative;*/
-/*}*/
-
-/*nav ul li a {*/
-/*    font-family: Arial;*/
-/*    color: black;*/
-/*    font-size: 24px;*/
-/*    padding: 18px 9px;*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*nav ul li ul {*/
-/*    display: block;*/
-/*    position: absolute;*/
-/*    padding: 10px;*/
-/*    background-color: gray;*/
-/*}*/
-
-/*nav ul li ul li a{*/
-/*    padding: 18px 9px;*/
-/*}*/
-
-/*nav ul li ul li a:hover{*/
-/*    background-color: yellow;*/
-/*}*/
-
-
-
 .dropdown {
     display: inline-block;
     position: relative;
+    width: 160px;
 }
 .dropdown-content {
     display: none;
@@ -274,6 +189,8 @@ button {
     height: 40px;
     font-size: 20px;
     background-color: transparent;
+    cursor: grab;
+    width: 160px;
 }
 
 button:hover {
@@ -287,11 +204,11 @@ button:hover {
 }
 
 .loginSize {
-    width: 120px;
+    width: 160px;
 }
 
 .registerSize {
-    width: 140px;
+    width: 160px;
 }
 
 .nav a {
@@ -302,8 +219,46 @@ button:hover {
     font-size: 20px;
     background-color: transparent;
     height: 40px;
+    width: 93%;
 }
 
 .nav a:hover {
     background-color: #00A4BD;
+}
+
+.homeOffer {
+    font-size: 26px;
+}
+
+.button3 {
+    background-color: rgba(0,206,20,255);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    border: 4px solid rgba(0,142,14,255);
+    padding: 10px;
+    box-shadow: 4px 3px rgba(0,51,5,255);
+    border-radius: 5%;
+    text-decoration: none;
+    padding-right: 20px;
+}
+
+.button3:hover {
+    background-color: rgb(4,194,20);
+}
+
+.welcomeLoginHeight {
+    padding-top: 20px;
+    position: relative;
+}
+
+.welcomeRegisterHeight {
+    padding-top: 50px;
+    position: relative;
+}
+
+.buttonAllign {
+    padding-right: 28px;
 }
