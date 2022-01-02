@@ -1,13 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-{#    <h1>#}
-{#        Virtual Environmentalists#}
-{#    </h1>#}
-{##}
-{#    <h2>#}
-{#      CSC2033#}
-{#    </h2>#}
-{##}
-{#    <p>Team 17</p>#}
+
+    <div class="welcome">
+        <h1>
+            Welcome to { to be decided }
+        </h1>
+
+        <div class="welcomeLoginHeight">
+            <b class="homeOffer buttonAllign">Login as:</b>
+            <a class="button3" href="{{ url_for('students.studentLogin') }}">Student</a>
+            <a class="button3" href="{{ url_for('students.teacherLogin') }}">Teacher</a>
+            <a class="button3" href="{{ url_for('students.parentLogin') }}">Parent</a>
+        </div>
+
+        <div class="welcomeRegisterHeight">
+            <b class="homeOffer">Register as:</b>
+            <a class="button3" href="{{ url_for('students.register') }}">Student</a>
+            <a class="button3" href="{{ url_for('students.register') }}">Teacher</a>
+            <a class="button3" href="{{ url_for('students.register') }}">Parent</a>
+        </div>
+    </div>
 {% endblock %}
