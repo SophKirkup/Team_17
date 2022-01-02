@@ -58,7 +58,27 @@ def register():
     return render_template('register.html', form=form)
 
 
-# view user login
-@users_blueprint.route('/login')
-def login():
+# view student login
+@users_blueprint.route('/studentLogin')
+def studentLogin():
     return render_template('login.html')
+
+# view student login
+@users_blueprint.route('/teacherLogin')
+def teacherLogin():
+    return render_template('login.html')
+
+# view student login
+@users_blueprint.route('/parentLogin')
+def parentLogin():
+    return render_template('login.html')
+
+# view turtle game
+@users_blueprint.route('/turtleGame')
+def turtleGame():
+    return render_template('turtleGame.html')
+
+# home page when not logged in
+@users_blueprint.route('/index')
+def index():
+    return render_template('index.html')
