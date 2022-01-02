@@ -11,7 +11,7 @@
 
 <body class="backgroundImage">
 
-<div class="nav">
+<div class="nav allignRight">
 
 
     <div class="dropdown">
@@ -29,18 +29,18 @@
     <div class="dropdown">
         <button class="loginSize">Login</button>
         <div class="dropdown-content">
-            <a class="loginLink" href="{{ url_for('students.studentLogin') }}">Student login</a>
-            <a class="loginLink" href="{{ url_for('students.teacherLogin') }}">Teacher login</a>
-            <a class="loginLink" href="{{ url_for('students.parentLogin') }}">Parent login</a>
+            <a href="{{ url_for('students.studentLogin') }}">Student login</a>
+            <a href="{{ url_for('students.teacherLogin') }}">Teacher login</a>
+            <a href="{{ url_for('students.parentLogin') }}">Parent login</a>
         </div>
     </div>
 
     <div class="dropdown">
         <button class="registerSize">Register</button>
         <div class="dropdown-content">
-            <a class="loginLink" href="{{ url_for('students.register') }}">Student register</a>
-            <a class="loginLink" href="{{ url_for('students.register') }}">Teacher register</a>
-            <a class="loginLink" href="{{ url_for('students.register') }}">Parent register</a>
+            <a href="{{ url_for('students.register') }}">Student register</a>
+            <a href="{{ url_for('students.register') }}">Teacher register</a>
+            <a href="{{ url_for('students.register') }}">Parent register</a>
         </div>
     </div>
 </div>
