@@ -48,6 +48,35 @@ def register():
     return render_template('register.html', form=form)
 
 
+# register pages
+@users_blueprint.route('/studentRegister')
+def studentRegister():
+    return render_template('studentRegister.html')
+
+@users_blueprint.route('/parentRegister')
+def parentRegister():
+    return render_template('parentRegister.html')
+
+@users_blueprint.route('/teacherRegister')
+def teacherRegister():
+    return render_template('teacherRegister.html')
+
+
+# Login pages
+@users_blueprint.route('/studentLogin')
+def studentLogin():
+    return render_template('studentLogin.html')
+
+@users_blueprint.route('/teacherLogin')
+def teacherLogin():
+    return render_template('teacherLogin.html')
+
+@users_blueprint.route('/parentLogin')
+def parentLogin():
+    return render_template('parentLogin.html')
+
+
+
 # view student login
 @users_blueprint.route('/studentLogin')
 def studentLogin():
