@@ -92,6 +92,11 @@ def parentLogin():
 def turtleGame():
     return render_template('turtleGame.html')
 
+# view pollution game
+@users_blueprint.route('/pollutionGame')
+def pollutionGame():
+    return render_template('pollutionGame.html')
+
 # home page when not logged in
 @users_blueprint.route('/index')
 def index():
