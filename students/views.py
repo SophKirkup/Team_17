@@ -77,21 +77,6 @@ def parentLogin():
 
 
 
-# view student login
-@users_blueprint.route('/studentLogin')
-def studentLogin():
-    return render_template('login.html')
-
-# view student login
-@users_blueprint.route('/teacherLogin')
-def teacherLogin():
-    return render_template('login.html')
-
-# view student login
-@users_blueprint.route('/parentLogin')
-def parentLogin():
-    return render_template('login.html')
-
 # view turtle game
 @users_blueprint.route('/turtleGame')
 def turtleGame():
