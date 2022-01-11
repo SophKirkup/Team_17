@@ -3,11 +3,12 @@ import logging
 from functools import wraps
 
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import current_user
+from flask_login import current_user, login_user, login_required
+from werkzeug.security import check_password_hash
 
 from app import db
 from models import Student, Teacher, School
-from students.forms import RegisterForm, teacherLoginForm, teacherRegForm
+from students.forms import studentRegForm, studentLoginForm, teacherLoginForm, teacherRegForm
 
 # CONFIG
 users_blueprint = Blueprint('students', __name__, template_folder='templates')
@@ -15,10 +16,10 @@ users_blueprint = Blueprint('students', __name__, template_folder='templates')
 
 # VIEWS
 # view registration
-@users_blueprint.route('/register', methods=['GET', 'POST'])
-def register():
+@users_blueprint.route('/studentRegister', methods=['GET', 'POST'])
+def studentRegister():
     # create signup form object
-    form = RegisterForm()
+    form = studentRegForm()
 
     # if request method is POST or form is valid
     if form.validate_on_submit():
@@ -26,19 +27,19 @@ def register():
         user = Student.query.filter_by(Username=form.username.data).first()
         if user:
             flash('Username already exists, go to the login page')
-            return render_template('register.html', form=form)
+            return render_template('studentRegister.html', form=form)
 
         # if teacher id doesn't exist, then the user can't register
         teacher = Teacher.query.filter_by(TeacherID=form.teacher_id.data).first()
         if not teacher:
             flash('That Teacher ID does not exist')
-            return render_template('register.html', form=form)
+            return render_template('studentRegister.html', form=form)
 
         # if sic doesn't exits, then the user can't register
         sic = School.query.filter_by(SIC=form.sic.data).first()
         if not sic:
             flash('That SIC does not exist')
-            return render_template('register.html', form=form)
+            return render_template('studentRegister.html', form=form)
 
         # create a new user with the form data
         new_user = Student(FirstName=form.firstname.data,
@@ -53,15 +54,10 @@ def register():
         db.session.commit()
 
         # sends user to login page
-        return redirect(url_for('students.login'))
+        return redirect(url_for('students.studentLogin'))
     # if request method is GET or form not valid re-render signup page
-    return render_template('register.html', form=form)
+    return render_template('studentRegister.html', form=form)
 
-
-# register pages
-@users_blueprint.route('/studentRegister')
-def studentRegister():
-    return render_template('studentRegister.html')
 
 
 @users_blueprint.route('/parentRegister')
@@ -79,15 +75,16 @@ def teacherRegister():
 
 
 # Login pages
+@users_blueprint.route('/studentLogin', methods=['GET', 'POST'])
+def studentLogin():
+    form = studentLoginForm()
+    return render_template('studentLogin.html', form=form)
+
+  
 @users_blueprint.route('/teacherLogin', methods=['GET', 'POST'])
 def TeacherLogin():
     form = RegisterForm()
     return render_template('teacherLogin.html', form=form)
-
-
-@users_blueprint.route('/studentLogin')
-def studentLogin():
-    return render_template('studentLogin.html')
 
 
 @users_blueprint.route('/parentLogin')
