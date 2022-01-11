@@ -75,3 +75,19 @@ class Parent(db.Model, UserMixin):
         self.SIC = SIC
         self.StudentID = StudentID
         self. Email = Email
+
+
+class User(db.Model, UserMixin):
+    __tablename__ = 'Users'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    Username = db.Column(db.String(20), nullable=False)
+    Password = db.Column(db.String(100), nullable=False)
+    Role = db.Column(db.String(100), nullable=False)
+
+    def __init__(self, id, Usernane, Password, Role):
+        self.id = id
+        self.Username = Usernane
+        self.Password = Password
+        self.Role = Role
