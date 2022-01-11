@@ -8,11 +8,17 @@
          <form method="POST">
                     <div class="loginfield">
                         {{ form.csrf_token() }}
-                            {{ form.username(class="input", placeholder="Username") }}
+                        {{ form.username(class="input", placeholder="Username") }}
+                        {% for error in form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
                     </div>
 
                     <div class="loginfield">
-                            {{ form.password(class="input", placeholder="Password") }}
+                        {{ form.password(class="input", placeholder="Password") }}
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
                     </div>
                     <div class="center">
                         {{ form.submit(class="button1") }}
