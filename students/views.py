@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash
 
 from app import db
 from models import Student, Teacher, School
-from students.forms import studentRegForm, studentLoginForm, teacherLoginForm, teacherRegForm
+from students.forms import studentRegForm, teacherRegForm, LoginForm
 
 # CONFIG
 users_blueprint = Blueprint('students', __name__, template_folder='templates')
@@ -59,7 +59,6 @@ def studentRegister():
     return render_template('studentRegister.html', form=form)
 
 
-
 @users_blueprint.route('/parentRegister')
 def parentRegister():
     return render_template('parentRegister.html')
@@ -96,22 +95,16 @@ def teacherRegister():
     return render_template('teacherRegister.html', form=form)
 
 
-# Login pages
-@users_blueprint.route('/studentLogin', methods=['GET', 'POST'])
-def studentLogin():
-    form = studentLoginForm()
-    return render_template('studentLogin.html', form=form)
+# Login page
+@users_blueprint.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
 
-  
-@users_blueprint.route('/teacherLogin', methods=['GET', 'POST'])
-def teacherLogin():
-    form = teacherLoginForm()
-    return render_template('teacherLogin.html', form=form)
+    if form.validate_on_submit():
+        return render_template()
 
+    return render_template('login.html', form=form)
 
-@users_blueprint.route('/parentLogin')
-def parentLogin():
-    return render_template('parentLogin.html')
 
 
 # view turtle game
