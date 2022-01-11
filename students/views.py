@@ -1,6 +1,8 @@
 # IMPORTS
 import logging
 from functools import wraps
+from flask import Flask
+
 
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import current_user
@@ -96,6 +98,17 @@ def turtleGame():
 @users_blueprint.route('/pollutionGame')
 def pollutionGame():
     return render_template('pollutionGame.html')
+
+app = Flask(__name__)
+@app.route('/submitScore/', methods = ['POST'])
+def user(user_id):
+    if request.method == 'POST':
+
+
+
+    else:
+
+
 
 # home page when not logged in
 @users_blueprint.route('/index')

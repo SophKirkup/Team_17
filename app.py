@@ -21,12 +21,15 @@ def index():
 
 
 if __name__ == "__main__":
-    my_host = "127.0.0.1"
-    free_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    free_socket.bind((my_host, 0))
-    free_socket.listen(5)
-    free_port = free_socket.getsockname()[1]
-    free_socket.close()
+
+    #dynamic port fix commented out at the moment, this could make it break while running inside uni network.
+
+    #my_host = "127.0.0.1"
+    #free_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #free_socket.bind((my_host, 0))
+    #free_socket.listen(5)
+    #free_port = free_socket.getsockname()[1]
+    #free_socket.close()
 
     # BLUEPRINTS
     # import blueprints
@@ -35,4 +38,7 @@ if __name__ == "__main__":
     # register blueprints with app
     app.register_blueprint(users_blueprint)
 
-    app.run(host=my_host, port=free_port, debug=True)
+
+    app.run()
+
+    #app.run(host=my_host, port=free_port, debug=True)
