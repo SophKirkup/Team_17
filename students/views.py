@@ -65,12 +65,34 @@ def parentRegister():
     return render_template('parentRegister.html')
 
 
-@users_blueprint.route('/teacherRegister')
+@users_blueprint.route('/teacherRegister', methods=['GET', 'POST'])
 def teacherRegister():
     form = teacherRegForm()
 
     if form.validate_on_submit():
-        return TeacherLogin()
+        user = Teacher.query.filter_by(Email=form.email.data).first()
+        if user:
+            flash('Email already exists, go to the login page')
+            return render_template('teacherRegister.html', form=form)
+
+        # if sic doesn't exits, then the user can't register
+        sic = School.query.filter_by(SIC=form.sic.data).first()
+        if not sic:
+            flash('That SIC does not exist')
+            return render_template('teacherRegister.html', form=form)
+
+        # create a new user with the form data
+        new_user = Teacher(FirstName=form.firstname.data,
+                           LastName=form.lastname.data,
+                           SIC=form.sic.data,
+                           Password=form.password.data,
+                           Email=form.email.data)
+
+        # add the new user to the database
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect(url_for('students.teacherLogin'))
     return render_template('teacherRegister.html', form=form)
 
 
@@ -82,7 +104,7 @@ def studentLogin():
 
   
 @users_blueprint.route('/teacherLogin', methods=['GET', 'POST'])
-def TeacherLogin():
+def teacherLogin():
     form = teacherLoginForm()
     return render_template('teacherLogin.html', form=form)
 

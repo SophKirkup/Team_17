@@ -35,12 +35,14 @@ class Teacher(db.Model, UserMixin):
     FirstName = db.Column(db.String(20), nullable=False)
     LastName = db.Column(db.String(20), nullable=False)
     Email = db.Column(db.String(50), nullable=False)
+    Password = db.Column(db.String(100), nullable=False)
 
-    def __init__(self, SIC, FirstName, LastName, Email):
+    def __init__(self, SIC, FirstName, LastName, Email, Password):
         self.SIC = SIC
         self.FirstName = FirstName
         self.LastName = LastName
         self.Email = Email
+        self.Password = Password
 
 
 class School(db.Model, UserMixin):
