@@ -2,6 +2,7 @@
 import socket
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 # CONFIG
 app = Flask(__name__)
@@ -40,6 +41,16 @@ if __name__ == "__main__":
     free_socket.listen(5)
     free_port = free_socket.getsockname()[1]
     free_socket.close()
+
+    login_manager = LoginManager()
+    login_manager.login_view = 'students.login'
+    login_manager.init_app(app)
+
+    from models import User
+
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(int(id))
 
     # BLUEPRINTS
     # import blueprints
