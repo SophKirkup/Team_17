@@ -3,7 +3,7 @@ import logging
 from functools import wraps
 
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import current_user, login_user, login_required
+from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.security import check_password_hash
 
 from app import db
@@ -101,12 +101,11 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(Username=form.username.data).first()
 
-        if not user or not (form.password.data == user.password):
+        if not user or not (form.password.data == user.Password):
             flash('Please check your login details and try again')
-            return render_template()
-
+            return render_template('login.html', form=form)
         login_user(user)
 
         return turtleGame()
@@ -123,3 +122,9 @@ def turtleGame():
 @users_blueprint.route('/index')
 def index():
     return render_template('index.html')
+
+
+@users_blueprint.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))

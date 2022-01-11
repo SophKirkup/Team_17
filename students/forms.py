@@ -67,5 +67,6 @@ class teacherRegForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[Required(), Email()])
+    username = StringField(validators=[Required()])
     password = PasswordField(validators=[Required()])
+    submit = SubmitField()
