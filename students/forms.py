@@ -5,7 +5,7 @@ from wtforms.validators import Length, EqualTo, ValidationError, Email
 from wtforms.validators import InputRequired as Required
 
 
-class RegisterForm(FlaskForm):
+class studentRegForm(FlaskForm):
     username = StringField(validators=[Required()])
     firstname = StringField(validators=[Required()])
     lastname = StringField(validators=[Required()])
@@ -38,6 +38,12 @@ class RegisterForm(FlaskForm):
             raise ValidationError('SIC must be a number')
 
 
+class studentLoginForm(FlaskForm):
+    username = StringField(validators=[Required()])
+    password = PasswordField(validators=[Required()])
+    submit = SubmitField()
+
+    
 class teacherLoginForm(FlaskForm):
     username = StringField(validators=[Required(), Email()])
     password = PasswordField(validators=[Required()])
