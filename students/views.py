@@ -3,12 +3,12 @@ import logging
 from functools import wraps
 
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import current_user, login_user, login_required
+from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.security import check_password_hash
 
 from app import db
-from models import Student, Teacher, School
-from students.forms import studentRegForm, studentLoginForm, teacherLoginForm, teacherRegForm
+from models import Student, Teacher, School, User
+from students.forms import studentRegForm, teacherRegForm, LoginForm
 
 # CONFIG
 users_blueprint = Blueprint('students', __name__, template_folder='templates')
@@ -49,15 +49,19 @@ def studentRegister():
                            Password=form.password.data,
                            Username=form.username.data)
 
+        new_student = User(Usernane=form.username.data,
+                           Password=form.password.data,
+                           Role='student')
+
         # add the new user to the database
         db.session.add(new_user)
+        db.session.add(new_student)
         db.session.commit()
 
         # sends user to login page
-        return redirect(url_for('students.studentLogin'))
+        return redirect(url_for('students.login'))
     # if request method is GET or form not valid re-render signup page
     return render_template('studentRegister.html', form=form)
-
 
 
 @users_blueprint.route('/parentRegister')
@@ -88,39 +92,52 @@ def teacherRegister():
                            Password=form.password.data,
                            Email=form.email.data)
 
+        new_teacher = User(Usernane=form.email.data,
+                           Password=form.password.data,
+                           Role='teacher')
+
         # add the new user to the database
         db.session.add(new_user)
+        db.session.add(new_teacher)
         db.session.commit()
 
-        return redirect(url_for('students.teacherLogin'))
+        return redirect(url_for('students.login'))
     return render_template('teacherRegister.html', form=form)
 
 
-# Login pages
-@users_blueprint.route('/studentLogin', methods=['GET', 'POST'])
-def studentLogin():
-    form = studentLoginForm()
-    return render_template('studentLogin.html', form=form)
+# Login page
+@users_blueprint.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
 
-  
-@users_blueprint.route('/teacherLogin', methods=['GET', 'POST'])
-def teacherLogin():
-    form = teacherLoginForm()
-    return render_template('teacherLogin.html', form=form)
+    if form.validate_on_submit():
+        user = User.query.filter_by(Username=form.username.data).first()
 
+        if not user or not (form.password.data == user.Password):
+            flash('Please check your login details and try again')
+            return render_template('login.html', form=form)
+        login_user(user)
 
-@users_blueprint.route('/parentLogin')
-def parentLogin():
-    return render_template('parentLogin.html')
+        return turtleGame()
+    return render_template('login.html', form=form)
 
 
 # view turtle game
 @users_blueprint.route('/turtleGame')
+@login_required
 def turtleGame():
     return render_template('turtleGame.html')
 
 
 # home page when not logged in
 @users_blueprint.route('/index')
+@login_required
 def index():
     return render_template('index.html')
+
+
+@users_blueprint.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
