@@ -105,9 +105,11 @@ def login():
 
         if not user or not (form.password.data == user.password):
             flash('Please check your login details and try again')
+            return render_template()
 
-        return render_template()
+        login_user(user)
 
+        return turtleGame()
     return render_template('login.html', form=form)
 
 
