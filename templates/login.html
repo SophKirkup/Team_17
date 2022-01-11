@@ -4,6 +4,13 @@
 
     <div class="login">
         <p class="loginfield" id='name' ><b>Login</b></p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
 
          <form method="POST">
                     <div class="loginfield">
