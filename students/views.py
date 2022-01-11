@@ -7,7 +7,7 @@ from flask_login import current_user
 
 from app import db
 from models import Student, Teacher, School
-from students.forms import RegisterForm
+from students.forms import RegisterForm, teacherLoginForm, teacherRegForm
 
 # CONFIG
 users_blueprint = Blueprint('students', __name__, template_folder='templates')
@@ -63,34 +63,43 @@ def register():
 def studentRegister():
     return render_template('studentRegister.html')
 
+
 @users_blueprint.route('/parentRegister')
 def parentRegister():
     return render_template('parentRegister.html')
 
+
 @users_blueprint.route('/teacherRegister')
 def teacherRegister():
-    return render_template('teacherRegister.html')
+    form = teacherRegForm()
+
+    if form.validate_on_submit():
+        return TeacherLogin()
+    return render_template('teacherRegister.html', form=form)
 
 
 # Login pages
+@users_blueprint.route('/teacherLogin', methods=['GET', 'POST'])
+def TeacherLogin():
+    form = RegisterForm()
+    return render_template('teacherLogin.html', form=form)
+
+
 @users_blueprint.route('/studentLogin')
 def studentLogin():
     return render_template('studentLogin.html')
 
-@users_blueprint.route('/teacherLogin')
-def teacherLogin():
-    return render_template('teacherLogin.html')
 
 @users_blueprint.route('/parentLogin')
 def parentLogin():
     return render_template('parentLogin.html')
 
 
-
 # view turtle game
 @users_blueprint.route('/turtleGame')
 def turtleGame():
     return render_template('turtleGame.html')
+
 
 # home page when not logged in
 @users_blueprint.route('/index')
