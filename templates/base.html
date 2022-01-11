@@ -27,12 +27,9 @@
     </div>
 
     <div class="dropdown">
-        <button class="loginSize">Login</button>
-        <div class="dropdown-content">
-            <a href="{{ url_for('students.studentLogin') }}">Student login</a>
-            <a href="{{ url_for('students.teacherLogin') }}">Teacher login</a>
-            <a href="{{ url_for('students.parentLogin') }}">Parent login</a>
-        </div>
+        <form action="{{ url_for('students.studentLogin') }}">
+            <button class="loginSize" type="submit" >Login</button>
+        </form>
     </div>
 
     <div class="dropdown">
