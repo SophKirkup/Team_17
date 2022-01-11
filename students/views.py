@@ -83,7 +83,7 @@ def studentLogin():
   
 @users_blueprint.route('/teacherLogin', methods=['GET', 'POST'])
 def TeacherLogin():
-    form = RegisterForm()
+    form = teacherLoginForm()
     return render_template('teacherLogin.html', form=form)
 
 
