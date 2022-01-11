@@ -36,3 +36,9 @@ class RegisterForm(FlaskForm):
         f = re.compile(r"^[0-9]+$")
         if not f.match(self.sic.data):
             raise ValidationError('SIC must be a number')
+
+
+class LoginForm(FlaskForm):
+    username = StringField(validators=[Required()])
+    password = PasswordField(validators=[Required()])
+    submit = SubmitField()
