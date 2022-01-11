@@ -61,3 +61,18 @@ class teacherRegForm(FlaskForm):
 
     email = StringField(validators=[Required(), Email()])
     submit = SubmitField()
+
+    def validate_firstname(self, firstname):  # check to see if firstname is required
+        f = re.compile(r"^[a-zA-Z ,.'-]+$")
+        if not f.match(self.firstname.data):
+            raise ValidationError('First name cannot contain non-name characters')
+
+    def validate_lastname(self, lastname):
+        f = re.compile(r"^[a-zA-Z ,.'-]+$")
+        if not f.match(self.lastname.data):
+            raise ValidationError('Last name cannot contain non-name characters')
+
+    def validate_sic(self, sic):
+        f = re.compile(r"^[0-9]+$")
+        if not f.match(self.sic.data):
+            raise ValidationError('SIC must be a number')
