@@ -38,18 +38,6 @@ class studentRegForm(FlaskForm):
             raise ValidationError('SIC must be a number')
 
 
-class studentLoginForm(FlaskForm):
-    username = StringField(validators=[Required()])
-    password = PasswordField(validators=[Required()])
-    submit = SubmitField()
-
-    
-class teacherLoginForm(FlaskForm):
-    username = StringField(validators=[Required(), Email()])
-    password = PasswordField(validators=[Required()])
-    submit = SubmitField()
-
-
 class teacherRegForm(FlaskForm):
     sic = StringField(validators=[Required()])
     firstname = StringField(validators=[Required()])
@@ -76,3 +64,9 @@ class teacherRegForm(FlaskForm):
         f = re.compile(r"^[0-9]+$")
         if not f.match(self.sic.data):
             raise ValidationError('SIC must be a number')
+
+
+class LoginForm(FlaskForm):
+    username = StringField(validators=[Required()])
+    password = PasswordField(validators=[Required()])
+    submit = SubmitField()
