@@ -1,7 +1,6 @@
 # IMPORTS
 import logging
 from functools import wraps
-from flask import Flask
 
 
 from flask import Blueprint, render_template, flash, redirect, url_for, request
@@ -99,12 +98,10 @@ def turtleGame():
 def pollutionGame():
     return render_template('pollutionGame.html')
 
-app = Flask(__name__)
-@app.route('/submitScore/', methods = ['POST'])
-def user(user_id):
+
+@users_blueprint.route('/submitScore', methods = ['POST'])
+def submitScore():
     if request.method == 'POST':
-
-
 
     else:
 
