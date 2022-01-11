@@ -49,12 +49,17 @@ def studentRegister():
                            Password=form.password.data,
                            Username=form.username.data)
 
+        new_student = User(Usernane=form.username.data,
+                           Password=form.password.data,
+                           Role='student')
+
         # add the new user to the database
         db.session.add(new_user)
+        db.session.add(new_student)
         db.session.commit()
 
         # sends user to login page
-        return redirect(url_for('students.studentLogin'))
+        return redirect(url_for('students.login'))
     # if request method is GET or form not valid re-render signup page
     return render_template('studentRegister.html', form=form)
 
@@ -87,11 +92,16 @@ def teacherRegister():
                            Password=form.password.data,
                            Email=form.email.data)
 
+        new_teacher = User(Usernane=form.email.data,
+                           Password=form.password.data,
+                           Role='teacher')
+
         # add the new user to the database
         db.session.add(new_user)
+        db.session.add(new_teacher)
         db.session.commit()
 
-        return redirect(url_for('students.teacherLogin'))
+        return redirect(url_for('students.login'))
     return render_template('teacherRegister.html', form=form)
 
 
@@ -114,17 +124,20 @@ def login():
 
 # view turtle game
 @users_blueprint.route('/turtleGame')
+@login_required
 def turtleGame():
     return render_template('turtleGame.html')
 
 
 # home page when not logged in
 @users_blueprint.route('/index')
+@login_required
 def index():
     return render_template('index.html')
 
 
 @users_blueprint.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))

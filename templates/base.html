@@ -15,9 +15,11 @@
 
 
     <div class="dropdown">
-        <form action="{{ url_for('students.turtleGame') }}">
-            <button type="submit" >Turtle swim</button>
-        </form>
+        {% if current_user.is_authenticated %}
+            <form action="{{ url_for('students.turtleGame') }}">
+                <button type="submit" >Turtle swim</button>
+            </form>
+        {% endif %}
     </div>
 
     <div class="dropdown">
@@ -26,20 +28,31 @@
         </form>
     </div>
 
-    <div class="dropdown">
-        <form action="{{ url_for('students.login') }}">
-            <button class="loginSize" type="submit" >Login</button>
-        </form>
-    </div>
+    {% if not current_user.is_authenticated %}
+        <div class="dropdown">
+            <form action="{{ url_for('students.login') }}">
+                <button class="loginSize" type="submit" >Login</button>
+            </form>
+        </div>
+
+        <div class="dropdown">
+            <button class="registerSize">Register</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('students.studentRegister') }}">Student register</a>
+                <a href="{{ url_for('students.teacherRegister') }}">Teacher register</a>
+                <a href="{{ url_for('students.parentRegister') }}">Parent register</a>
+            </div>
+        </div>
+    {% endif %}
 
     <div class="dropdown">
-        <button class="registerSize">Register</button>
-        <div class="dropdown-content">
-            <a href="{{ url_for('students.studentRegister') }}">Student register</a>
-            <a href="{{ url_for('students.teacherRegister') }}">Teacher register</a>
-            <a href="{{ url_for('students.parentRegister') }}">Parent register</a>
-        </div>
+        {% if current_user.is_authenticated %}
+            <form action="{{ url_for('students.logout') }}">
+                <button type="submit" >Logout</button>
+            </form>
+        {% endif %}
     </div>
+
 </div>
 
     {% block content %}
