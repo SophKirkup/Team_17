@@ -7,7 +7,7 @@ from flask_login import current_user, login_user, login_required
 from werkzeug.security import check_password_hash
 
 from app import db
-from models import Student, Teacher, School
+from models import Student, Teacher, School, User
 from students.forms import studentRegForm, teacherRegForm, LoginForm
 
 # CONFIG
@@ -101,10 +101,16 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        return render_template()
+        user = User.query.filter_by(username=form.username.data).first()
 
+        if not user or not (form.password.data == user.password):
+            flash('Please check your login details and try again')
+            return render_template()
+
+        login_user(user)
+
+        return turtleGame()
     return render_template('login.html', form=form)
-
 
 
 # view turtle game
