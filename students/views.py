@@ -8,7 +8,7 @@ from werkzeug.security import check_password_hash
 
 from app import db
 from models import Student, Teacher, School
-from students.forms import RegisterForm, LoginForm
+from students.forms import studentRegForm, studentLoginForm, teacherLoginForm, teacherRegForm
 
 # CONFIG
 users_blueprint = Blueprint('students', __name__, template_folder='templates')
@@ -19,7 +19,7 @@ users_blueprint = Blueprint('students', __name__, template_folder='templates')
 @users_blueprint.route('/studentRegister', methods=['GET', 'POST'])
 def studentRegister():
     # create signup form object
-    form = RegisterForm()
+    form = studentRegForm()
 
     # if request method is POST or form is valid
     if form.validate_on_submit():
@@ -59,6 +59,7 @@ def studentRegister():
     return render_template('studentRegister.html', form=form)
 
 
+
 @users_blueprint.route('/parentRegister')
 def parentRegister():
     return render_template('parentRegister.html')
@@ -66,19 +67,24 @@ def parentRegister():
 
 @users_blueprint.route('/teacherRegister')
 def teacherRegister():
-    return render_template('teacherRegister.html')
+    form = teacherRegForm()
+
+    if form.validate_on_submit():
+        return TeacherLogin()
+    return render_template('teacherRegister.html', form=form)
 
 
 # Login pages
 @users_blueprint.route('/studentLogin', methods=['GET', 'POST'])
 def studentLogin():
-    form = LoginForm()
+    form = studentLoginForm()
     return render_template('studentLogin.html', form=form)
 
-
-@users_blueprint.route('/teacherLogin')
-def teacherLogin():
-    return render_template('teacherLogin.html')
+  
+@users_blueprint.route('/teacherLogin', methods=['GET', 'POST'])
+def TeacherLogin():
+    form = RegisterForm()
+    return render_template('teacherLogin.html', form=form)
 
 
 @users_blueprint.route('/parentLogin')

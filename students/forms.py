@@ -1,11 +1,11 @@
 import re
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, PasswordField
-from wtforms.validators import Length, EqualTo, ValidationError
+from wtforms.validators import Length, EqualTo, ValidationError, Email
 from wtforms.validators import InputRequired as Required
 
 
-class RegisterForm(FlaskForm):
+class studentRegForm(FlaskForm):
     username = StringField(validators=[Required()])
     firstname = StringField(validators=[Required()])
     lastname = StringField(validators=[Required()])
@@ -38,7 +38,26 @@ class RegisterForm(FlaskForm):
             raise ValidationError('SIC must be a number')
 
 
-class LoginForm(FlaskForm):
+class studentLoginForm(FlaskForm):
     username = StringField(validators=[Required()])
     password = PasswordField(validators=[Required()])
+    submit = SubmitField()
+
+    
+class teacherLoginForm(FlaskForm):
+    username = StringField(validators=[Required(), Email()])
+    password = PasswordField(validators=[Required()])
+    submit = SubmitField()
+
+
+class teacherRegForm(FlaskForm):
+    sic = StringField(validators=[Required()])
+    firstname = StringField(validators=[Required()])
+    lastname = StringField(validators=[Required()])
+    password = PasswordField(validators=[Required(), Length(min=5, max=15,
+                                                            message="Password must be between 5  and 15 characters "
+                                                                    "long.")])
+    confirm_password = PasswordField(validators=[Required(), EqualTo('password', message="Both passwords must match.")])
+
+    email = StringField(validators=[Required(), Email()])
     submit = SubmitField()
