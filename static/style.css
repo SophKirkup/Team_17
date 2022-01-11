@@ -229,6 +229,7 @@ button:hover {
 
 .homeOffer {
     font-size: 26px;
+    padding-right: 3px;
 }
 
 .button3 {
@@ -266,4 +267,20 @@ button:hover {
 
 .allignRight{
     text-align: right;
+}
+
+.button4 {
+    padding: 12px 138px;
+    background-color: rgba(0,206,20,255);
+    color: white;
+    margin-left: 0;
+    cursor: pointer;
+    border: 4px solid rgba(0,142,14,255);
+    box-shadow: 4px 3px rgba(0,51,5,255);
+    border-radius: 5%;
+    text-decoration: none;
+}
+
+.button4:hover {
+    background-color: rgb(4,194,20);
 }
