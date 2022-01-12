@@ -15,25 +15,52 @@
             <form method="POST">
                 <div class="loginfield">
                     {{ form.csrf_token() }}
-                        {{ form.username(class="input", placeholder="Username") }}
+                    {{ form.firstname(class="input", placeholder="First Name") }}
+                    {% for error in form.firstname.errors %}
+                        {{ error }}
+                    {% endfor %}
                 </div>
+
                 <div class="loginfield">
-                        {{ form.firstname(class="input", placeholder="First Name") }}
+                    {{ form.lastname(class="input", placeholder="Last Name") }}
+                    {% for error in form.lastname.errors %}
+                        {{ error }}
+                    {% endfor %}
                 </div>
+
                 <div class="loginfield">
-                        {{ form.lastname(class="input", placeholder="Last Name") }}
+                    {{ form.email(class="input", placeholder="Email") }}
+                    {% for error in form.email.errors %}
+                        {{ error }}
+                    {% endfor %}
                 </div>
+
                 <div class="loginfield">
-                        {{ form.password(class="input", placeholder="Password") }}
+                    {{ form.password(class="input", placeholder="Password") }}
+                    {% for error in form.password.errors %}
+                        {{ error }}
+                    {% endfor %}
                 </div>
+
                 <div class="loginfield">
-                        {{ form.confirm_password(class="input", placeholder="Confirm Password") }}
+                    {{ form.confirm_password(class="input", placeholder="Confirm Password") }}
+                    {% for error in form.confirm_password.errors %}
+                        {{ error }}
+                    {% endfor %}
                 </div>
+
                 <div class="loginfield">
-                        {{ form.sic(class="input", placeholder="SIC (School Individual Code") }}
+                    {{ form.sic(class="input", placeholder="SIC (School Individual Code") }}
+                    {% for error in form.sic.errors %}
+                        {{ error }}
+                    {% endfor %}
                 </div>
+
                 <div class="loginfield">
-                        {{ form.teacher_id(class="input", placeholder="Parent ID") }}
+                    {{ form.student_id(class="input", placeholder="Student ID") }}
+                    {% for error in form.student_id.errors %}
+                        {{ error }}
+                    {% endfor %}
                 </div>
 
                 <div class="center">
