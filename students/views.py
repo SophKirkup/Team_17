@@ -2,6 +2,7 @@
 import logging
 from functools import wraps
 
+
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.security import check_password_hash
@@ -122,11 +123,7 @@ def login():
     return render_template('login.html', form=form)
 
 
-# view turtle game
-@users_blueprint.route('/turtleGame')
-@login_required
-def turtleGame():
-    return render_template('turtleGame.html')
+
 
 
 # home page when not logged in

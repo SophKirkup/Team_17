@@ -56,12 +56,15 @@ def internal_error(error):
 
 
 if __name__ == "__main__":
-    my_host = "127.0.0.1"
-    free_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    free_socket.bind((my_host, 0))
-    free_socket.listen(5)
-    free_port = free_socket.getsockname()[1]
-    free_socket.close()
+
+    #dynamic port fix commented out at the moment, this could make it break while running inside uni network.
+
+    #my_host = "127.0.0.1"
+    #free_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #free_socket.bind((my_host, 0))
+    #free_socket.listen(5)
+    #free_port = free_socket.getsockname()[1]
+    #free_socket.close()
 
     login_manager = LoginManager()
     login_manager.login_view = 'students.login'
@@ -76,8 +79,13 @@ if __name__ == "__main__":
     # BLUEPRINTS
     # import blueprints
     from students.views import users_blueprint
+    from games.views import games_blueprint
 
     # register blueprints with app
     app.register_blueprint(users_blueprint)
+    app.register_blueprint(games_blueprint)
 
-    app.run(host=my_host, port=free_port, debug=True)
+
+    app.run(debug=True)
+
+    #app.run(host=my_host, port=free_port, debug=True)
