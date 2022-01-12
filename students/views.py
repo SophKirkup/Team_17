@@ -118,8 +118,21 @@ def login():
             return render_template('login.html', form=form)
         login_user(user)
 
-        return turtleGame()
+        return account()
     return render_template('login.html', form=form)
+
+
+# view accounts page
+@users_blueprint.route('/account')
+@login_required
+def account():
+    if current_user.Role == 'student':
+        user = Student.query.filter_by(Username=current_user.Username).first()
+        name = user.Username
+    elif current_user.Role == 'teacher':
+        user = Teacher.query.filter_by(Email=current_user.Username).first()
+        name = user.FirstName + ' ' + user.LastName
+    return render_template('account.html', name=name)
 
 
 # view turtle game
