@@ -18,49 +18,62 @@ def pollutionGame():
 @games_blueprint.route('/submitScore', methods = ['POST'])
 def submitScore():
     if request.method == 'POST':
-        score = 0
-        game = ""
+        score = 1
+        game = "No Game"
         success = True
+        errors = []
+
 
 
 
         if "sourceGame" in request.form:
             game = request.form.get("sourceGame")
+
+            # source game names
+            # kieran's game - TurtleGame
+            # charlie's game - PollutionGame
         else:
             success = False
+            errors.append("noSourceGame")
         if "score" in request.form:
             score = int(request.form.get("score"))
         else:
             success = False
+            errors.append("noScore")
         if "checkSum" in request.form:
 
 
             checkSum = float(request.form.get("checkSum"))
 
-            salt1 = 48372000
-            salt2 = 16584
+            # key values for checksum, same values are hard coded into each game's scoring scripts.
+            s1 = 541
+            s2 = 225
 
-            # checksum is calculated  as (((salt1+score)/salt2) x score), so to check, do
-            # round((((checkSum/score)*salt2)-salt1)), and it should equal score.
-            # this is not perfectly secure, but for a kids website this level of security
-            # for high scores is sufficient
-            score2 = round((((checkSum/score)*salt2)-salt1))
-            if score2==score:
-                print(str(score2),"==",str(score),", score IS from",game)
-            else:
-                print(str(score2),"=/=",str(score),", score IS NOT from",game,". Likely to be cheating attempt.")
+            # checksum is calculated  as ((s1+score)*s2)*s1), so to check, do
+            # ((checkSum/s1)/s2)-s1), and it should equal score.
+            # this is not very secure, but for a kids website this level of security
+            # for high scores is sufficient, and will make it at least tamper proof
+            score2 = round(((checkSum/s1)/s2)-s1)
+            if not score2==score:
                 success = False
+                score = -1
+                errors.append("checksumFalse")
         else:
-            print("no checksum")
             success = False
+            errors.append("noCheckSum")
 
         if success:
-            print("Recieved score from " + game + ", of " + str(score))
+            print("Recieved score from " + game + ", of " + str(score),", is legitimate.")
+
+            # put code here for saving a correct score from the game
+
         else:
-            print("one or more values were incorrect. score not saved.")
+            print("Recieved score from " + game + ", of " + str(score), ", is illegitimate.")
+
 
 
     response = {
+                  "errors": errors,
                   "success": success,
                   "score": score,
                   "game": game
