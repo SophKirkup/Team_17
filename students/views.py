@@ -88,42 +88,7 @@ def parentLogin():
 
 
 
-# view turtle game
-@users_blueprint.route('/turtleGame')
-def turtleGame():
-    return render_template('turtleGame.html')
 
-# view pollution game
-@users_blueprint.route('/pollutionGame')
-def pollutionGame():
-    return render_template('pollutionGame.html')
-
-
-@users_blueprint.route('/submitScore', methods = ['POST'])
-def submitScore():
-    if request.method == 'POST':
-        score = 0
-        game = "GameName"
-        success = True
-
-        print(request.form)
-
-        if "sourceGame" in request.form:
-            game = request.form.get("sourceGame")
-        else:
-            success = False
-        if "score" in request.form:
-            score = request.form.get("score")
-        else:
-            success = False
-        print("Recieved score from "+game+", of "+str(score))
-
-    response = {
-                  "success": success,
-                  "score": score,
-                  "game": game
-                }
-    return response
 
 
 

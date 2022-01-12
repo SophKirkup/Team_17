@@ -34,9 +34,11 @@ if __name__ == "__main__":
     # BLUEPRINTS
     # import blueprints
     from students.views import users_blueprint
+    from games.views import games_blueprint
 
     # register blueprints with app
     app.register_blueprint(users_blueprint)
+    app.register_blueprint(games_blueprint)
 
 
     app.run(debug=True)
