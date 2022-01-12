@@ -39,6 +39,6 @@ if __name__ == "__main__":
     app.register_blueprint(users_blueprint)
 
 
-    app.run()
+    app.run(debug=True)
 
     #app.run(host=my_host, port=free_port, debug=True)
