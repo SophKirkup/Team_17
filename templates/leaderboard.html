@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="pt-5 pb-2">Leaderboard</h1>
+
+
+
+
+
+		<table class="table">
+			<tr>
+				<th>Student ID</th>
+				<th>Firstname</th>
+				<th>Lastname</th>
+				<th>Points</th>
+				<th>SIC</th>
+			</tr>
+
+
+			{% for student in Students %}
+			<tr>
+				<td>{{ student.StudentID }}</td>
+				<td>{{ student.FirstName }}</td>
+				<td>${{ student.LastName }}</td>
+				<td>{{ student.Points }}</td>
+				<td>{{ student.SIC }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+
+{% endblock %}
