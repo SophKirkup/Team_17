@@ -3,7 +3,7 @@ import socket
 from functools import wraps
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 
 # CONFIG
 app = Flask(__name__)
@@ -80,10 +80,12 @@ if __name__ == "__main__":
     # import blueprints
     from students.views import users_blueprint
     from games.views import games_blueprint
+    from leaderboard.views import lb_blueprint
 
     # register blueprints with app
     app.register_blueprint(users_blueprint)
     app.register_blueprint(games_blueprint)
+    app.register_blueprint(lb_blueprint)
 
 
     app.run(debug=True)
