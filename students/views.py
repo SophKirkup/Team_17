@@ -126,7 +126,10 @@ def login():
 @users_blueprint.route('/account')
 @login_required
 def account():
-    user = Student.query.filter_by(Username=current_user.Username).first()
+    if current_user.Role == 'student':
+        user = Student.query.filter_by(Username=current_user.Username).first()
+    elif current_user.Role == 'teacher':
+        user = Teacher.query.filter_by(Username=current_user.Username).first()
     return render_template('account.html', name=user.Username)
 
 
