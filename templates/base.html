@@ -14,21 +14,33 @@
 <div class="nav allignRight">
 
 
-    <div class="dropdown">
-        {% if current_user.is_authenticated %}
+    {% if current_user.is_authenticated %}
+        <div class="dropdown">
             <form action="{{ url_for('students.turtleGame') }}">
                 <button type="submit" >Turtle swim</button>
             </form>
-        {% endif %}
-    </div>
+        </div>
 
-    <div class="dropdown">
-        <form action="{{ url_for('students.index') }}">
-            <button type="submit" >Home page</button>
-        </form>
-    </div>
+        <div class="dropdown">
+            <form action="{{ url_for('students.account') }}">
+                <button type="submit" >Home page</button>
+            </form>
+        </div>
+
+        <div class="dropdown">
+            <form action="{{ url_for('students.logout') }}">
+                <button type="submit" >Logout</button>
+            </form>
+        </div>
+    {% endif %}
 
     {% if not current_user.is_authenticated %}
+        <div class="dropdown">
+            <form action="{{ url_for('students.index') }}">
+                <button type="submit" >Home page</button>
+            </form>
+        </div>
+
         <div class="dropdown">
             <form action="{{ url_for('students.login') }}">
                 <button class="loginSize" type="submit" >Login</button>
@@ -44,14 +56,6 @@
             </div>
         </div>
     {% endif %}
-
-    <div class="dropdown">
-        {% if current_user.is_authenticated %}
-            <form action="{{ url_for('students.logout') }}">
-                <button type="submit" >Logout</button>
-            </form>
-        {% endif %}
-    </div>
 
 </div>
 
