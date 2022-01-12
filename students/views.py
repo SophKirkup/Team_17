@@ -122,6 +122,13 @@ def login():
     return render_template('login.html', form=form)
 
 
+# view accounts page
+@users_blueprint.route('/account')
+@login_required
+def account():
+    return render_template('account.html')
+
+
 # view turtle game
 @users_blueprint.route('/turtleGame')
 @login_required
