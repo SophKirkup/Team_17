@@ -126,7 +126,8 @@ def login():
 @users_blueprint.route('/account')
 @login_required
 def account():
-    return render_template('account.html')
+    user = Student.query.filter_by(Username=current_user.Username).first()
+    return render_template('account.html', name=user.Username)
 
 
 # view turtle game
