@@ -67,13 +67,15 @@ class Parent(db.Model, UserMixin):
     SIC = db.Column(db.String(20), nullable=False)
     StudentID = db.Column(db.Integer, nullable=False)
     Email = db.Column(db.String(50), nullable=False)
+    Password = db.Column(db.String(100), nullable=False)
 
-    def __init__(self, FirstName, LastName, SIC, StudentID, Email):
+    def __init__(self, FirstName, LastName, SIC, StudentID, Email, Password):
         self.FirstName = FirstName
         self.LastName = LastName
         self.SIC = SIC
         self.StudentID = StudentID
         self. Email = Email
+        self.Password = Password
 
 
 class User(db.Model, UserMixin):
