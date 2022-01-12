@@ -118,7 +118,7 @@ def login():
             return render_template('login.html', form=form)
         login_user(user)
 
-        return turtleGame()
+        return account()
     return render_template('login.html', form=form)
 
 
