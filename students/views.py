@@ -167,11 +167,16 @@ def login():
 def account():
     if current_user.Role == 'student':
         user = Student.query.filter_by(Username=current_user.Username).first()
-        name = user.Username
+        usertype = 'Username'
+        username = user.Username
+        sic = user.SIC
     elif current_user.Role == 'teacher':
         user = Teacher.query.filter_by(Email=current_user.Username).first()
-        name = user.FirstName + ' ' + user.LastName
-    return render_template('account.html', name=name)
+        usertype = 'Email'
+        username = user.Email
+        sic = user.SIC
+    name = user.FirstName + ' ' + user.LastName
+    return render_template('account.html', name=name, username_email=usertype, user=username, SIC=sic)
 
 
 # view turtle game
