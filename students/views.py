@@ -169,14 +169,19 @@ def account():
         user = Student.query.filter_by(Username=current_user.Username).first()
         usertype = 'Username'
         username = user.Username
-        sic = user.SIC
     elif current_user.Role == 'teacher':
         user = Teacher.query.filter_by(Email=current_user.Username).first()
         usertype = 'Email'
         username = user.Email
-        sic = user.SIC
+    elif current_user.Role == 'parent':
+        user = Parent.query.filter_by(Email=current_user.Username).first()
+        usertype = 'Email'
+        username = user.Email
     name = user.FirstName + ' ' + user.LastName
-    return render_template('account.html', name=name, username_email=usertype, user=username, SIC=sic)
+    sic = user.SIC
+    school = School.query.filter_by(SIC=user.SIC).first()
+    schoolName = school.SchoolName
+    return render_template('account.html', name=name, usernameEmail=usertype, user=username, SIC=sic, schoolName=schoolName)
 
 
 # view turtle game
