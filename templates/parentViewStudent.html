@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="welcome">
+        <div class="horizontalAlign">
+            <h1>
+                Your child: {{ student.FirstName }} {{ student.LastName }} <br>
+            </h1>
+            <h2>
+                Their school: {{ school.SchoolName }} <br>
+                Their teacher: {{ teacher.FirstName }} {{ teacher.LastName }} <br>
+                Their points: {{ student.Points }}
+            </h2>
+        </div>
+    </div>
+
+{% endblock %}

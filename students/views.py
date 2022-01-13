@@ -171,6 +171,9 @@ def account():
     elif current_user.Role == 'teacher':
         user = Teacher.query.filter_by(Email=current_user.Username).first()
         name = user.FirstName + ' ' + user.LastName
+    elif current_user.Role == 'parent':
+        user = Parent.query.filter_by(Email=current_user.Username).first()
+        name = user.FirstName + ' ' + user.LastName
     return render_template('account.html', name=name)
 
 
