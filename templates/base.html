@@ -9,6 +9,8 @@
 
 
 <body class="backgroundImage">
+    <div class="computer">
+        <div class="nav allignRight">
 
 
 <div class="nav allignRight">
@@ -30,6 +32,7 @@
         <div class="dropdown">
             <form action="{{ url_for('games.pollutionGame') }}">
                 <button type="submit" >Pollution Game</button>
+
             </form>
         </div>
 
@@ -49,34 +52,46 @@
 
     {% endif %}
 
-    {% if not current_user.is_authenticated %}
-        <div class="dropdown">
-            <form action="{{ url_for('students.index') }}">
-                <button type="submit" >Home page</button>
-            </form>
-        </div>
 
-        <div class="dropdown">
-            <form action="{{ url_for('students.login') }}">
-                <button class="loginSize" type="submit" >Login</button>
-            </form>
-        </div>
-
-        <div class="dropdown">
-            <button class="registerSize">Register</button>
-            <div class="dropdown-content">
-                <a href="{{ url_for('students.studentRegister') }}">Student register</a>
-                <a href="{{ url_for('students.teacherRegister') }}">Teacher register</a>
-                <a href="{{ url_for('students.parentRegister') }}">Parent register</a>
+        {% if not current_user.is_authenticated %}
+            <div class="dropdown">
+                <form action="{{ url_for('students.index') }}">
+                    <button type="submit" >Home page</button>
+                </form>
             </div>
+
+            <div class="dropdown">
+                <form action="{{ url_for('students.login') }}">
+                    <button class="loginSize" type="submit" >Login</button>
+                </form>
+            </div>
+
+            <div class="dropdown">
+                <button class="registerSize">Register</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('students.studentRegister') }}">Student register</a>
+                    <a href="{{ url_for('students.teacherRegister') }}">Teacher register</a>
+                    <a href="{{ url_for('students.parentRegister') }}">Parent register</a>
+                </div>
+            </div>
+        {% endif %}
+
         </div>
-    {% endif %}
 
-</div>
+        {% block content %}
+        {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+    </div>
+
+    <div class="mobile">
+        <div class="mobileBox">
+            <h2 class="center">
+                Sorry this page is not mobile compatible
+            </h2>
+        </div>
+    </div>
 
 </body>
+
 
 </html>
