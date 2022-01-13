@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Pollution Game - Save The Turtles!</title>
-    <link rel="shortcut icon" href={{ url_for('static', filename='PollutionGame/TemplateData/favicon.ico')}}>
-    <link rel="stylesheet" href={{ url_for('static', filename='PollutionGame/TemplateData/style.css')}}>
-  </head>
-  <body>
+{% extends "gameBase.html" %}
+
+{% block content %}
+
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" height="100%" width="100%"></canvas>
       <div id="unity-loading-bar">
@@ -117,5 +111,6 @@
       };
       document.body.appendChild(script);
     </script>
-  </body>
-</html>
+
+{% endblock %}
+
