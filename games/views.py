@@ -14,15 +14,6 @@ def turtleGame():
 def pollutionGame():
     return render_template('pollutionGame.html')
 
-@games_blueprint.route('/PollutionGame/<path:path>')
-def send_Buildjs(path):
-    return send_from_directory('templates/PollutionGame/PollutionGame', path)
-
-@games_blueprint.route('/PollutionGame/TemplateData/<path:path>')
-def send_Templatejs(path):
-    return send_from_directory('templates/PollutionGame/TemplateData', path)
-
-
 @games_blueprint.route('/submitScore', methods = ['POST'])
 def submitScore():
     if request.method == 'POST':
