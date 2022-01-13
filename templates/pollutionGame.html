@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Pollution Game Dev Build</title>
-    <link rel="shortcut icon" href="PollutionGame/TemplateData/favicon.ico">
-    <link rel="stylesheet" href="PollutionGame/TemplateData/style.css">
+    <link rel="shortcut icon" href={{ url_for('static', filename='PollutionGame/TemplateData/favicon.ico')}}>
+    <link rel="stylesheet" href={{ url_for('static', filename='PollutionGame/TemplateData/style.css')}}>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -55,12 +55,12 @@
         updateBannerVisibility();
       }
 
-      var buildUrl = "PollutionGame";
-      var loaderUrl = buildUrl + "/builds.loader.js";
+      var buildUrl = "{{ url_for('static', filename='PollutionGame/PollutionGame') }}";
+      var loaderUrl = buildUrl + "/PollutionGame.loader.js";
       var config = {
-        dataUrl: buildUrl + "/builds.data",
-        frameworkUrl: buildUrl + "/builds.framework.js",
-        codeUrl: buildUrl + "/builds.wasm",
+        dataUrl: buildUrl + "/PollutionGame.data",
+        frameworkUrl: buildUrl + "/PollutionGame.framework.js",
+        codeUrl: buildUrl + "/PollutionGame.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Environmentalists",
         productName: "Pollution Game",
