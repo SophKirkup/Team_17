@@ -42,29 +42,29 @@ def leaderboard():
 # ERROR PAGE VIEWS
 @app.errorhandler(403)
 def page_forbidden(error):
-     return render_template('403.html'), 403
+    return render_template('403.html'), 403
 
 
 @app.errorhandler(404)
 def page_not_found(error):
-     return render_template('404.html'), 404
+    return render_template('404.html'), 404
 
 
 @app.errorhandler(500)
 def internal_error(error):
-     return render_template('500.html'), 500
+    return render_template('500.html'), 500
 
 
 if __name__ == "__main__":
 
-    #dynamic port fix commented out at the moment, this could make it break while running inside uni network.
+    # dynamic port fix commented out at the moment, this could make it break while running inside uni network.
 
-    #my_host = "127.0.0.1"
-    #free_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #free_socket.bind((my_host, 0))
-    #free_socket.listen(5)
-    #free_port = free_socket.getsockname()[1]
-    #free_socket.close()
+    my_host = "127.0.0.1"
+    free_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    free_socket.bind((my_host, 0))
+    free_socket.listen(5)
+    free_port = free_socket.getsockname()[1]
+    free_socket.close()
 
     login_manager = LoginManager()
     login_manager.login_view = 'students.login'
@@ -81,13 +81,15 @@ if __name__ == "__main__":
     from students.views import users_blueprint
     from games.views import games_blueprint
     from leaderboard.views import lb_blueprint
+    from parents.views import parent_blueprint
 
     # register blueprints with app
     app.register_blueprint(users_blueprint)
     app.register_blueprint(games_blueprint)
     app.register_blueprint(lb_blueprint)
+    app.register_blueprint(parent_blueprint)
 
 
-    app.run(debug=True)
+    # app.run(debug=True)
 
-    #app.run(host=my_host, port=free_port, debug=True)
+    app.run(host=my_host, port=free_port, debug=True)
