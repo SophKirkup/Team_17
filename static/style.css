@@ -316,3 +316,28 @@ button:hover {
         display: block;
     }
 }
+
+.computerGame {
+    display: block;
+}
+
+.mobileGame {
+    display: none;
+}
+
+@media screen and (max-width: 960px), screen and (max-height: 720px) {
+
+    .computerGame {
+        display: none;
+    }
+
+    .mobileGame {
+        display: block;
+    }
+}
+
+.alignCenter {
+    text-align: center;
+    margin-top: 1px;
+    padding-top: 1px;
+}
