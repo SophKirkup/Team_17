@@ -3,7 +3,7 @@ from flask import *
 from models import Student, Teacher, School
 
 # config
-lb_blueprint = Blueprint('students', __name__, template_folder='templates')
+lb_blueprint = Blueprint('leaderboard', __name__, template_folder='templates')
 
 
 @lb_blueprint.route('/leaderboard')
