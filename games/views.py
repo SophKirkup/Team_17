@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request
+from flask import Blueprint, render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user
 
 
@@ -13,7 +13,6 @@ def turtleGame():
 @games_blueprint.route('/pollutionGame')
 def pollutionGame():
     return render_template('pollutionGame.html')
-
 
 @games_blueprint.route('/submitScore', methods = ['POST'])
 def submitScore():
