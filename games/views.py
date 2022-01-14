@@ -22,7 +22,7 @@ def pollutionGame():
 def submitScore():
     if request.method == 'POST':
         score = 1
-        game = "No Game"
+        game = "No Game Specified"
         success = True
         errors = []
 
@@ -61,6 +61,11 @@ def submitScore():
             success = False
             errors.append("noCheckSum")
 
+        if  not current_user.is_authenticated:
+            success = False
+            errors.append("noUserLoggedIn")
+
+
         if success:
             print("Recieved score from " + game + ", of " + str(score), ", is legitimate.")
 
@@ -68,7 +73,7 @@ def submitScore():
             saveScore(score)
 
         else:
-            print("Recieved score from " + game + ", of " + str(score), ", is illegitimate.")
+            print("Recieved score from " + game + ", of " + str(score), " but with Errors: ["+ ", ".join(errors)+"]. Score will not be saved.")
 
     response = {
         "errors": errors,
@@ -80,20 +85,23 @@ def submitScore():
 
 
 def saveScore(score):
-    if current_user.Role == 'student':
-        #update user's score
-        user = Student.query.filter_by(Username=current_user.Username).first()
-        previousScore = user.Points
-        newScore = previousScore + score
-        user.Points = newScore
+    if current_user.is_authenticated:
+        if current_user.Role == 'student':
+            #update user's score
+            user = Student.query.filter_by(Username=current_user.Username).first()
+            previousScore = user.Points
+            newScore = previousScore + score
+            user.Points = newScore
 
-        #update the schools total score
-        usersSchool = School.query.filter_by(SIC=user.SIC).first()
-        schoolOldScore = usersSchool.TotalPoints
-        newSchoolScore = schoolOldScore + score
-        usersSchool.TotalPoints = newSchoolScore
+            #update the schools total score
+            usersSchool = School.query.filter_by(SIC=user.SIC).first()
+            schoolOldScore = usersSchool.TotalPoints
+            newSchoolScore = schoolOldScore + score
+            usersSchool.TotalPoints = newSchoolScore
 
 
-        db.session.commit()
+            db.session.commit()
+        else:
+            print("Score can only be saved if you are a student")
     else:
-        print("Score can only be saved if you are a student")
+        print("No user logged in, score not saved.")
