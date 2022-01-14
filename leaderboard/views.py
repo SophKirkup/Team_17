@@ -12,7 +12,7 @@ def leaderboard():
         students = Student.query.order_by(Student.Points).all()
         student_text = '<ul>'
         for student in students:
-            student_text += '<li>' + student.name + ', ' + student.points + '</li>'
+            student_text += '<li>' + student.FirstName + ' ' + student.LastName +', ' + str(student.Points) + '</li>'
         student_text += '</ul>'
         return student_text
     except Exception as e:
