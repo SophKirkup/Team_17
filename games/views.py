@@ -1,13 +1,14 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user
 
-
 games_blueprint = Blueprint('games', __name__, template_folder='templates')
+
 
 # view turtle game
 @games_blueprint.route('/turtleGame')
 def turtleGame():
     return render_template('turtleGame.html')
+
 
 # view pollution game
 @games_blueprint.route('/pollutionGame')
@@ -22,9 +23,6 @@ def submitScore():
         game = "No Game"
         success = True
         errors = []
-
-
-
 
         if "sourceGame" in request.form:
             game = request.form.get("sourceGame")
@@ -42,7 +40,6 @@ def submitScore():
             errors.append("noScore")
         if "checkSum" in request.form:
 
-
             checkSum = float(request.form.get("checkSum"))
 
             # key values for checksum, same values are hard coded into each game's scoring scripts.
@@ -53,8 +50,8 @@ def submitScore():
             # ((checkSum/s1)/s2)-s1), and it should equal score.
             # this is not very secure, but for a kids website this level of security
             # for high scores is sufficient, and will make it at least tamper proof
-            score2 = round(((checkSum/s1)/s2)-s1)
-            if not score2==score:
+            score2 = round(((checkSum / s1) / s2) - s1)
+            if not score2 == score:
                 success = False
                 score = -1
                 errors.append("checksumFalse")
@@ -63,19 +60,17 @@ def submitScore():
             errors.append("noCheckSum")
 
         if success:
-            print("Recieved score from " + game + ", of " + str(score),", is legitimate.")
+            print("Recieved score from " + game + ", of " + str(score), ", is legitimate.")
 
             # put code here for saving a correct score from the game
 
         else:
             print("Recieved score from " + game + ", of " + str(score), ", is illegitimate.")
 
-
-
     response = {
-                  "errors": errors,
-                  "success": success,
-                  "score": score,
-                  "game": game
-                }
+        "errors": errors,
+        "success": success,
+        "score": score,
+        "game": game
+    }
     return response
