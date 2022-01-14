@@ -56,6 +56,25 @@ body {
     border-radius: 3%;
 }
 
+.errorBox {
+    background-color: rgba(201,248,255,255);
+    color: black;
+    font-size: 26px;
+    height: 80px;
+    width: 240px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border: 9px solid rgba(37,97,147,255);
+    padding: 10px;
+    box-shadow: 5px 10px rgba(29,74,112,255);
+    border-radius: 3%;
+    font-weight: bold;
+    text-align: center;
+
+}
+
 .mobileBox {
     background-color: rgba(201,248,255,255);
     color: black;
