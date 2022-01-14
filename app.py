@@ -12,6 +12,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://csc2033_team17:B
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'LongAndRandomSecretKey'
 
+# change StaticPort to False to dynamically assign port, if you are having trouble
+# accessing the website on the uni network.
+# !! However this will mean scores from games cannot be saved !!
+StaticPort = True
+
 # initialise database
 db = SQLAlchemy(app)
 
@@ -57,14 +62,13 @@ def internal_error(error):
 
 if __name__ == "__main__":
 
-    # dynamic port fix commented out at the moment, this could make it break while running inside uni network.
-
-    # my_host = "127.0.0.1"
-    # free_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # free_socket.bind((my_host, 0))
-    # free_socket.listen(5)
-    # free_port = free_socket.getsockname()[1]
-    # free_socket.close()
+    if not StaticPort:
+        my_host = "127.0.0.1"
+        free_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        free_socket.bind((my_host, 0))
+        free_socket.listen(5)
+        free_port = free_socket.getsockname()[1]
+        free_socket.close()
 
     login_manager = LoginManager()
     login_manager.login_view = 'students.login'
@@ -89,7 +93,7 @@ if __name__ == "__main__":
     app.register_blueprint(lb_blueprint)
     app.register_blueprint(parent_blueprint)
 
-
-    app.run(debug=True)
-
-    # app.run(host=my_host, port=free_port, debug=True)
+    if StaticPort:
+        app.run(debug=True)
+    else:
+        app.run(host=my_host, port=free_port, debug=True)
