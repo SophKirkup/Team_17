@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user
+from app import db
+from models import Student, School
 
 games_blueprint = Blueprint('games', __name__, template_folder='templates')
 
@@ -63,6 +65,7 @@ def submitScore():
             print("Recieved score from " + game + ", of " + str(score), ", is legitimate.")
 
             # put code here for saving a correct score from the game
+            saveScore(score)
 
         else:
             print("Recieved score from " + game + ", of " + str(score), ", is illegitimate.")
@@ -74,3 +77,23 @@ def submitScore():
         "game": game
     }
     return response
+
+
+def saveScore(score):
+    if current_user.Role == 'student':
+        #update user's score
+        user = Student.query.filter_by(Username=current_user.Username).first()
+        previousScore = user.Points
+        newScore = previousScore + score
+        user.Points = newScore
+
+        #update the schools total score
+        usersSchool = School.query.filter_by(SIC=user.SIC).first()
+        schoolOldScore = usersSchool.TotalPoints
+        newSchoolScore = schoolOldScore + score
+        usersSchool.TotalPoints = newSchoolScore
+
+
+        db.session.commit()
+    else:
+        print("Score can only be saved if you are a student")
