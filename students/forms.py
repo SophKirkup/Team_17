@@ -33,9 +33,9 @@ class studentRegForm(FlaskForm):
             raise ValidationError('Teacher ID must be a number')
 
     def validate_sic(self, sic):
-        f = re.compile(r"^[0-9]+$")
+        f = re.compile(r"^\s*([A-Za-z]\s*){3}$")
         if not f.match(self.sic.data):
-            raise ValidationError('SIC must be a number')
+            raise ValidationError('SIC must be a 3 digit character')
 
 
 class teacherRegForm(FlaskForm):
@@ -61,9 +61,9 @@ class teacherRegForm(FlaskForm):
             raise ValidationError('Last name cannot contain non-name characters')
 
     def validate_sic(self, sic):
-        f = re.compile(r"^[0-9]+$")
+        f = re.compile(r"^\s*([A-Za-z]\s*){3}$")
         if not f.match(self.sic.data):
-            raise ValidationError('SIC must be a number')
+            raise ValidationError('SIC must be a 3 digit character')
 
 
 class parentRegForm(FlaskForm):
@@ -89,9 +89,9 @@ class parentRegForm(FlaskForm):
             raise ValidationError('Last name cannot contain non-name characters')
 
     def validate_sic(self, sic):
-        f = re.compile(r"^[0-9]+$")
+        f = re.compile(r"^\s*([A-Za-z]\s*){3}$")
         if not f.match(self.sic.data):
-            raise ValidationError('SIC must be a number')
+            raise ValidationError('SIC must be a 3 digit character')
 
     def validate_student_id(self, student_id):
         f = re.compile(r"^[0-9]+$")
