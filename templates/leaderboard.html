@@ -2,15 +2,16 @@
 
 {% block content %}
 
-<h1 class="pt-5 pb-2">Leaderboard</h1>
+<div class="leaderboardBox">
+    <div class="header" >Leaderboard</div>
 
-    <table class="table">
+    <table>
         <tr>
-            <th>Student ID</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Points</th>
-            <th>SIC</th>
+            <th class="tableHeader">Student ID</th>
+            <th class="tableHeader">Firstname</th>
+            <th class="tableHeader">Lastname</th>
+            <th class="tableHeader">Points</th>
+            <th class="tableHeader">SIC</th>
         </tr>
 
         {% for student in Students %}
@@ -23,5 +24,8 @@
             </tr>
         {% endfor %}
     </table>
+</div>
+
+
 
 {% endblock %}
