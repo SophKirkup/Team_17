@@ -54,6 +54,9 @@ def page_forbidden(error):
 def page_not_found(error):
     return render_template('404.html'), 404
 
+@app.errorhandler(405)
+def Method_not_allowed(e):
+    return render_template('405.html'), 405
 
 @app.errorhandler(500)
 def internal_error(error):

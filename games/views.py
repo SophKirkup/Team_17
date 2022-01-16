@@ -36,7 +36,7 @@ def submitScore():
             success = False
             errors.append("noSourceGame")
         if "score" in request.form:
-            score = int(request.form.get("score"))
+            score = int(round(float(request.form.get("score"))))
         else:
             success = False
             errors.append("noScore")
