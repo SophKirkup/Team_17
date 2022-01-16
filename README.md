@@ -1,6 +1,6 @@
 # Virtual_Environmentalists - Sea Savers website
 
-##Games
+## Games
 
 Games have been created in Unity, the files in the `../static/PollutionGame/` 
 and `../static/TurtleGame/`
