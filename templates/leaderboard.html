@@ -2,29 +2,29 @@
 
 {% block content %}
 
-<div class="leaderboardBox">
-    <div class="header" >Leaderboard</div>
+    <div class="leaderboardBox">
+        <div class="header">Leaderboard</div>
 
-    <table>
-        <tr>
-            <th class="tableHeader">Student ID</th>
-            <th class="tableHeader">Firstname</th>
-            <th class="tableHeader">Lastname</th>
-            <th class="tableHeader">Points</th>
-            <th class="tableHeader">SIC</th>
-        </tr>
-
-        {% for student in Students %}
+        <table>
             <tr>
-                <td>{{ student.StudentID }}</td>
-                <td>{{ student.FirstName }}</td>
-                <td>{{ student.LastName }}</td>
-                <td>{{ student.Points }}</td>
-                <td>{{ student.SIC }}</td>
+                <th class="tableHeader">Student ID</th>
+                <th class="tableHeader">Firstname</th>
+                <th class="tableHeader">Lastname</th>
+                <th class="tableHeader">Points</th>
+                <th class="tableHeader">SIC</th>
             </tr>
-        {% endfor %}
-    </table>
-</div>
+
+            {% for student in Students %}
+                <tr>
+                    <td>{{ student.StudentID }}</td>
+                    <td>{{ student.FirstName }}</td>
+                    <td>{{ student.LastName }}</td>
+                    <td>{{ student.Points }}</td>
+                    <td>{{ student.SIC }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 
 
