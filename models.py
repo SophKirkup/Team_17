@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from app import db
+from werkzeug.security import generate_password_hash
 
 
 class Student(db.Model, UserMixin):
@@ -21,7 +22,7 @@ class Student(db.Model, UserMixin):
         self.Points = None
         self.TeacherID = TeacherID
         self.SIC = SIC
-        self.Password = Password
+        self.Password = generate_password_hash(Password)
         self.Username = Username
 
 
