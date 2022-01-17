@@ -23,7 +23,7 @@ def pollution_game():
 
 
 @games_blueprint.route('/submitScore', methods=['POST'])
-def submitScore():
+def submit_score():
     if request.method == 'POST':
         score = 1
         game = "No Game Specified"
