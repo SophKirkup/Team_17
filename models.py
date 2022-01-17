@@ -42,7 +42,7 @@ class Teacher(db.Model, UserMixin):
         self.FirstName = FirstName
         self.LastName = LastName
         self.Email = Email
-        self.Password = Password
+        self.Password = generate_password_hash(Password)
 
 
 class School(db.Model, UserMixin):
