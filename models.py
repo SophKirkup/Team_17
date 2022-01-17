@@ -87,7 +87,7 @@ class User(db.Model, UserMixin):
     Password = db.Column(db.String(100), nullable=False)
     Role = db.Column(db.String(100), nullable=False)
 
-    def __init__(self, Usernane, Password, Role):
-        self.Username = Usernane
+    def __init__(self, Username, Password, Role):
+        self.Username = Username
         self.Password = Password
         self.Role = Role
