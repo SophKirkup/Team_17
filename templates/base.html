@@ -12,7 +12,7 @@
 <div class="computer">
     <div class="nav allignRight">
 
-        {% if True %}
+        {% if current_user.is_authenticated %}
             <div class="dropdown">
                 <form action="{{ url_for('students.account') }}">
                     <button type="submit">Home page</button>
