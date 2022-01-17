@@ -22,8 +22,8 @@ def pollution_game():
     return render_template('pollutionGame.html')
 
 
-@games_blueprint.route('/submit_score', methods=['POST'])
-def submit_score():
+@games_blueprint.route('/submitScore', methods=['POST'])
+def submitScore():
     if request.method == 'POST':
         score = 1
         game = "No Game Specified"
@@ -44,9 +44,9 @@ def submit_score():
         else:
             success = False
             errors.append("noScore")
-        if "check_sum" in request.form:
+        if "checkSum" in request.form:
 
-            check_sum = float(request.form.get("check_sum"))
+            check_sum = float(request.form.get("checkSum"))
 
             # key values for checksum, same values are hard coded into each game's scoring scripts.
             s1 = 541
@@ -77,7 +77,7 @@ def submit_score():
 
         else:
             print("Received score from " + game + ", of " + str(score),
-                  " but with Errors: [" + ", ".join(errors)+"]. Score will not be saved.")
+                  "but with Errors: [" + ", ".join(errors)+"]. Score will not be saved.")
 
     response = {
         "errors": errors,
