@@ -48,6 +48,14 @@
                 </div>
             {% endif %}
 
+            {% if current_user.Role=='teacher'%}
+                <div class="dropdown">
+                    <form action="{{ url_for('teachers.teacher_view_school') }}">
+                        <button type="submit" >View students</button>
+                    </form>
+                </div>
+            {% endif %}
+
             <div class="dropdown">
                 <form action="{{ url_for('students.logout') }}">
                     <button type="submit" >Logout</button>
