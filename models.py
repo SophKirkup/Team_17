@@ -76,7 +76,7 @@ class Parent(db.Model, UserMixin):
         self.SIC = SIC
         self.StudentID = StudentID
         self. Email = Email
-        self.Password = Password
+        self.Password = generate_password_hash(Password)
 
 
 class User(db.Model, UserMixin):
