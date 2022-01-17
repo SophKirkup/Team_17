@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request, send_from_directory
+from flask import Blueprint, render_template, request
 from flask_login import current_user, login_required
 from app import db, requires_roles
 from models import Student, School
@@ -7,23 +7,23 @@ games_blueprint = Blueprint('games', __name__, template_folder='templates')
 
 
 # view turtle game
-@games_blueprint.route('/turtleGame')
+@games_blueprint.route('/turtle_game')
 @login_required
 @requires_roles('student')
-def turtleGame():
+def turtle_game():
     return render_template('turtleGame.html')
 
 
 # view pollution game
-@games_blueprint.route('/pollutionGame')
+@games_blueprint.route('/pollution_game')
 @login_required
 @requires_roles('student')
-def pollutionGame():
+def pollution_game():
     return render_template('pollutionGame.html')
 
 
-@games_blueprint.route('/submitScore', methods=['POST'])
-def submitScore():
+@games_blueprint.route('/submit_score', methods=['POST'])
+def submit_score():
     if request.method == 'POST':
         score = 1
         game = "No Game Specified"
@@ -44,19 +44,19 @@ def submitScore():
         else:
             success = False
             errors.append("noScore")
-        if "checkSum" in request.form:
+        if "check_sum" in request.form:
 
-            checkSum = float(request.form.get("checkSum"))
+            check_sum = float(request.form.get("check_sum"))
 
             # key values for checksum, same values are hard coded into each game's scoring scripts.
             s1 = 541
             s2 = 225
 
             # checksum is calculated  as ((s1+score)*s2)*s1), so to check, do
-            # ((checkSum/s1)/s2)-s1), and it should equal score.
+            # ((check_sum/s1)/s2)-s1), and it should equal score.
             # this is not very secure, but for a kids website this level of security
             # for high scores is sufficient, and will make it at least tamper proof
-            score2 = round(((checkSum / s1) / s2) - s1)
+            score2 = round(((check_sum / s1) / s2) - s1)
             if not score2 == score:
                 success = False
                 score = -1
@@ -65,19 +65,19 @@ def submitScore():
             success = False
             errors.append("noCheckSum")
 
-        if  not current_user.is_authenticated:
+        if not current_user.is_authenticated:
             success = False
             errors.append("noUserLoggedIn")
 
-
         if success:
-            print("Recieved score from " + game + ", of " + str(score), ", is legitimate.")
+            print("Received score from " + game + ", of " + str(score), ", is legitimate.")
 
             # put code here for saving a correct score from the game
-            saveScore(score)
+            save_score(score)
 
         else:
-            print("Recieved score from " + game + ", of " + str(score), " but with Errors: ["+ ", ".join(errors)+"]. Score will not be saved.")
+            print("Received score from " + game + ", of " + str(score),
+                  " but with Errors: [" + ", ".join(errors)+"]. Score will not be saved.")
 
     response = {
         "errors": errors,
@@ -88,21 +88,20 @@ def submitScore():
     return response
 
 
-def saveScore(score):
+def save_score(score):
     if current_user.is_authenticated:
         if current_user.Role == 'student':
-            #update user's score
+            # update user's score
             user = Student.query.filter_by(Username=current_user.Username).first()
-            previousScore = user.Points
-            newScore = previousScore + score
-            user.Points = newScore
+            previous_score = user.Points
+            new_score = previous_score + score
+            user.Points = new_score
 
-            #update the schools total score
-            usersSchool = School.query.filter_by(SIC=user.SIC).first()
-            schoolOldScore = usersSchool.TotalPoints
-            newSchoolScore = schoolOldScore + score
-            usersSchool.TotalPoints = newSchoolScore
-
+            # update the schools total score
+            users_school = School.query.filter_by(SIC=user.SIC).first()
+            school_old_score = users_school.TotalPoints
+            new_school_score = school_old_score + score
+            users_school.TotalPoints = new_school_score
 
             db.session.commit()
         else:

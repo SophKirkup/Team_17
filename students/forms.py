@@ -1,11 +1,11 @@
 import re
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import Length, EqualTo, ValidationError, Email
 from wtforms.validators import InputRequired as Required
 
 
-class studentRegForm(FlaskForm):
+class StudentRegForm(FlaskForm):
     username = StringField(validators=[Required()])
     firstname = StringField(validators=[Required()])
     lastname = StringField(validators=[Required()])
@@ -35,10 +35,10 @@ class studentRegForm(FlaskForm):
     def validate_sic(self, sic):
         f = re.compile(r"^\s*([A-Za-z]\s*){3}$")
         if not f.match(self.sic.data):
-            raise ValidationError('SIC must be a 3 digit character')
+            raise ValidationError('SIC must be 3 characters long')
 
 
-class teacherRegForm(FlaskForm):
+class TeacherRegForm(FlaskForm):
     sic = StringField(validators=[Required()])
     firstname = StringField(validators=[Required()])
     lastname = StringField(validators=[Required()])
@@ -63,10 +63,10 @@ class teacherRegForm(FlaskForm):
     def validate_sic(self, sic):
         f = re.compile(r"^\s*([A-Za-z]\s*){3}$")
         if not f.match(self.sic.data):
-            raise ValidationError('SIC must be a 3 digit character')
+            raise ValidationError('SIC must be 3 characters long')
 
 
-class parentRegForm(FlaskForm):
+class ParentRegForm(FlaskForm):
     firstname = StringField(validators=[Required()])
     lastname = StringField(validators=[Required()])
     email = StringField(validators=[Required(), Email()])
@@ -91,7 +91,7 @@ class parentRegForm(FlaskForm):
     def validate_sic(self, sic):
         f = re.compile(r"^\s*([A-Za-z]\s*){3}$")
         if not f.match(self.sic.data):
-            raise ValidationError('SIC must be a 3 digit character')
+            raise ValidationError('SIC must be 3 characters long')
 
     def validate_student_id(self, student_id):
         f = re.compile(r"^[0-9]+$")
