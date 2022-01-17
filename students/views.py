@@ -5,6 +5,7 @@ from flask_login import current_user, login_user, login_required, logout_user
 from app import db
 from models import Student, Teacher, School, Parent, User
 from students.forms import StudentRegForm, TeacherRegForm, ParentRegForm, LoginForm
+from werkzeug.security import check_password_hash
 
 # CONFIG
 users_blueprint = Blueprint('students', __name__, template_folder='templates')
@@ -151,7 +152,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(Username=form.username.data).first()
 
-        if not user or not (form.password.data == user.Password):
+        if not user or not check_password_hash(user.password, form.password.data):
             flash('Please check your login details and try again')
             return render_template('login.html', form=form)
         login_user(user)
