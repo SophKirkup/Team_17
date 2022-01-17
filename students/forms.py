@@ -103,3 +103,12 @@ class LoginForm(FlaskForm):
     username = StringField(validators=[Required()])
     password = PasswordField(validators=[Required()])
     submit = SubmitField()
+
+
+class ResetPasswordForm(FlaskForm):
+    student_id = StringField(validators=[Required()])
+    password = PasswordField(validators=[Required(), Length(min=5, max=15,
+                                                            message="Password must be between 5 and 15 characters "
+                                                                    "long.")])
+    confirm_password = PasswordField(validators=[Required(), EqualTo('password', message="Both passwords must match.")])
+    submit = SubmitField()

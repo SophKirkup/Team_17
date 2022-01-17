@@ -91,12 +91,14 @@ if __name__ == "__main__":
     from games.views import games_blueprint
     from leaderboard.views import lb_blueprint
     from parents.views import parent_blueprint
+    from teachers.views import teacher_blueprint
 
     # register blueprints with app
     app.register_blueprint(users_blueprint)
     app.register_blueprint(games_blueprint)
     app.register_blueprint(lb_blueprint)
     app.register_blueprint(parent_blueprint)
+    app.register_blueprint(teacher_blueprint)
 
     if StaticPort:
         app.run(debug=True)

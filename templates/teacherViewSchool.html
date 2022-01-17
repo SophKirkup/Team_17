@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="leaderboardBox">
+        <div class="header" >Students in this school</div>
+
+            <table>
+                <tr>
+                    <th class="tableHeader">Student ID</th>
+                    <th class="tableHeader">Firstname</th>
+                    <th class="tableHeader">Lastname</th>
+                    <th class="tableHeader">Points</th>
+                    <th class="tableHeader">SIC</th>
+                </tr>
+
+                {% for student in Students %}
+                    <tr>
+                        <td>{{ student.StudentID }}</td>
+                        <td>{{ student.FirstName }}</td>
+                        <td>{{ student.LastName }}</td>
+                        <td>{{ student.Points }}</td>
+                        <td>{{ student.SIC }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        <div class="center">
+            <a class="button3" href="{{ url_for('teachers.reset_password') }}">Reset student password</a>
+        </div>
+    </div>
+
+{% endblock %}
