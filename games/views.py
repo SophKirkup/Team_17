@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, send_from_directory
-from flask_login import current_user
-from app import db
+from flask_login import current_user, login_required
+from app import db, requires_roles
 from models import Student, School
 
 games_blueprint = Blueprint('games', __name__, template_folder='templates')
@@ -8,12 +8,16 @@ games_blueprint = Blueprint('games', __name__, template_folder='templates')
 
 # view turtle game
 @games_blueprint.route('/turtleGame')
+@login_required
+@requires_roles('student')
 def turtleGame():
     return render_template('turtleGame.html')
 
 
 # view pollution game
 @games_blueprint.route('/pollutionGame')
+@login_required
+@requires_roles('student')
 def pollutionGame():
     return render_template('pollutionGame.html')
 
