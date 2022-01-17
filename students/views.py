@@ -181,7 +181,8 @@ def account():
     sic = user.SIC
     school = School.query.filter_by(SIC=user.SIC).first()
     schoolName = school.SchoolName
-    return render_template('account.html', name=name, usernameEmail=usertype, user=username, SIC=sic, schoolName=schoolName)
+    return render_template('account.html', name=name, usernameEmail=usertype,
+                           user=username, SIC=sic, schoolName=schoolName, role=current_user.Role.capitalize())
 
 
 # view turtle game
