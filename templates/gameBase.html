@@ -27,13 +27,13 @@
 
             {% if current_user.Role=='student' %}
                 <div class="dropdown">
-                    <form action="{{ url_for('games.turtleGame') }}">
+                    <form action="{{ url_for('games.turtle_game') }}">
                         <button type="submit">Turtle swim</button>
                     </form>
                 </div>
 
                 <div class="dropdown">
-                    <form action="{{ url_for('games.pollutionGame') }}">
+                    <form action="{{ url_for('games.pollution_game') }}">
                         <button type="submit">Pollution Game</button>
 
                     </form>
