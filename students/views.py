@@ -5,6 +5,7 @@ from flask_login import current_user, login_user, login_required, logout_user
 from app import db
 from models import Student, Teacher, School, Parent, User
 from students.forms import StudentRegForm, TeacherRegForm, ParentRegForm, LoginForm
+from werkzeug.security import check_password_hash, generate_password_hash
 
 # CONFIG
 users_blueprint = Blueprint('students', __name__, template_folder='templates')
@@ -37,16 +38,18 @@ def student_register():
             flash('That SIC does not exist')
             return render_template('studentRegister.html', form=form)
 
+        hashedPassword = generate_password_hash(form.password.data)
+
         # create a new user with the form data
         new_user = Student(FirstName=form.firstname.data,
                            LastName=form.lastname.data,
                            SIC=form.sic.data,
                            TeacherID=form.teacher_id.data,
-                           Password=form.password.data,
+                           Password=hashedPassword,
                            Username=form.username.data)
 
         new_student = User(Username=form.username.data,
-                           Password=form.password.data,
+                           Password=hashedPassword,
                            Role='student')
 
         # add the new user to the database
@@ -82,16 +85,18 @@ def parent_register():
             flash('That Student does not exist')
             return render_template('parentRegister.html', form=form)
 
+        hashedPassword = generate_password_hash(form.password.data)
+
         # create a new user with the form data
         new_user = Parent(FirstName=form.firstname.data,
                           LastName=form.lastname.data,
                           SIC=form.sic.data,
                           StudentID=form.student_id.data,
                           Email=form.email.data,
-                          Password=form.password.data)
+                          Password=hashedPassword)
 
         new_parent = User(Username=form.email.data,
-                          Password=form.password.data,
+                          Password=hashedPassword,
                           Role='parent')
 
         # add the new user to the database
@@ -119,15 +124,17 @@ def teacher_register():
             flash('That SIC does not exist')
             return render_template('teacherRegister.html', form=form)
 
+        hashedPassword = generate_password_hash(form.password.data)
+
         # create a new user with the form data
         new_user = Teacher(FirstName=form.firstname.data,
                            LastName=form.lastname.data,
                            SIC=form.sic.data,
-                           Password=form.password.data,
+                           Password=hashedPassword,
                            Email=form.email.data)
 
         new_teacher = User(Username=form.email.data,
-                           Password=form.password.data,
+                           Password=hashedPassword,
                            Role='teacher')
 
         # add the new user to the database
@@ -151,7 +158,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(Username=form.username.data).first()
 
-        if not user or not (form.password.data == user.Password):
+        if not user or not check_password_hash(user.Password, form.password.data):
             flash('Please check your login details and try again')
             return render_template('login.html', form=form)
         login_user(user)

@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import current_user, login_required
 from models import Student, Teacher, User
 from students.forms import ResetPasswordForm
+from werkzeug.security import check_password_hash, generate_password_hash
 
 # CONFIG
 teacher_blueprint = Blueprint('teachers', __name__, template_folder='templates')
@@ -43,9 +44,11 @@ def reset_password():
         # gets the record in the 'Users' table, which is the way the program manages logins
         user_to_change = User.query.filter_by(Username=student_to_change.Username).first()
 
+        hashedPassword = generate_password_hash(form.password.data)
+
         # updates both records, one in either table, and commits the change to the database
-        student_to_change.Password = form.password.data
-        user_to_change.Password = form.password.data
+        student_to_change.Password = hashedPassword
+        user_to_change.Password = hashedPassword
         db.session.commit()
 
         return redirect(url_for('teachers.teacher_view_school'))
