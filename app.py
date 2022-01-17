@@ -82,8 +82,8 @@ if __name__ == "__main__":
     from models import User
 
     @login_manager.user_loader
-    def load_user(id):
-        return User.query.get(int(id))
+    def load_user(uid):
+        return User.query.get(int(uid))
 
     # BLUEPRINTS
     # import blueprints

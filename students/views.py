@@ -1,15 +1,10 @@
 # IMPORTS
-import logging
-from functools import wraps
-
-
-from flask import Blueprint, render_template, flash, redirect, url_for, request
+from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, login_required, logout_user
-from werkzeug.security import check_password_hash
 
-from app import db, requires_roles
+from app import db
 from models import Student, Teacher, School, Parent, User
-from students.forms import studentRegForm, teacherRegForm, parentRegForm, LoginForm
+from students.forms import StudentRegForm, TeacherRegForm, ParentRegForm, LoginForm
 
 # CONFIG
 users_blueprint = Blueprint('students', __name__, template_folder='templates')
@@ -17,10 +12,10 @@ users_blueprint = Blueprint('students', __name__, template_folder='templates')
 
 # VIEWS
 # view registration
-@users_blueprint.route('/studentRegister', methods=['GET', 'POST'])
-def studentRegister():
+@users_blueprint.route('/student_register', methods=['GET', 'POST'])
+def student_register():
     # create signup form object
-    form = studentRegForm()
+    form = StudentRegForm()
 
     # if request method is POST or form is valid
     if form.validate_on_submit():
@@ -50,7 +45,7 @@ def studentRegister():
                            Password=form.password.data,
                            Username=form.username.data)
 
-        new_student = User(Usernane=form.username.data,
+        new_student = User(Username=form.username.data,
                            Password=form.password.data,
                            Role='student')
 
@@ -65,9 +60,9 @@ def studentRegister():
     return render_template('studentRegister.html', form=form)
 
 
-@users_blueprint.route('/parentRegister', methods=['GET', 'POST'])
-def parentRegister():
-    form = parentRegForm()
+@users_blueprint.route('/parent_register', methods=['GET', 'POST'])
+def parent_register():
+    form = ParentRegForm()
 
     if form.validate_on_submit():
         user = Parent.query.filter_by(Email=form.email.data).first()
@@ -95,7 +90,7 @@ def parentRegister():
                           Email=form.email.data,
                           Password=form.password.data)
 
-        new_parent = User(Usernane=form.email.data,
+        new_parent = User(Username=form.email.data,
                           Password=form.password.data,
                           Role='parent')
 
@@ -108,9 +103,9 @@ def parentRegister():
     return render_template('parentRegister.html', form=form)
 
 
-@users_blueprint.route('/teacherRegister', methods=['GET', 'POST'])
-def teacherRegister():
-    form = teacherRegForm()
+@users_blueprint.route('/teacher_register', methods=['GET', 'POST'])
+def teacher_register():
+    form = TeacherRegForm()
 
     if form.validate_on_submit():
         user = Teacher.query.filter_by(Email=form.email.data).first()
@@ -131,7 +126,7 @@ def teacherRegister():
                            Password=form.password.data,
                            Email=form.email.data)
 
-        new_teacher = User(Usernane=form.email.data,
+        new_teacher = User(Username=form.email.data,
                            Password=form.password.data,
                            Role='teacher')
 
@@ -177,16 +172,16 @@ def account():
         user = Teacher.query.filter_by(Email=current_user.Username).first()
         usertype = 'Email'
         username = user.Email
-    elif current_user.Role == 'parent':
+    else:
         user = Parent.query.filter_by(Email=current_user.Username).first()
         usertype = 'Email'
         username = user.Email
     name = user.FirstName + ' ' + user.LastName
     sic = user.SIC
     school = School.query.filter_by(SIC=user.SIC).first()
-    schoolName = school.SchoolName
+    school_name = school.SchoolName
     return render_template('account.html', name=name, usernameEmail=usertype,
-                           user=username, SIC=sic, schoolName=schoolName, role=current_user.Role.capitalize())
+                           user=username, SIC=sic, schoolName=school_name, role=current_user.Role.capitalize())
 
 
 # home page when not logged in
