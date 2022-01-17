@@ -90,5 +90,5 @@ class User(db.Model, UserMixin):
 
     def __init__(self, Username, Password, Role):
         self.Username = Username
-        self.Password = Password
+        self.Password = generate_password_hash(Password)
         self.Role = Role
