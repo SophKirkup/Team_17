@@ -7,7 +7,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.security import check_password_hash
 
-from app import db
+from app import db, requires_roles
 from models import Student, Teacher, School, Parent, User
 from students.forms import studentRegForm, teacherRegForm, parentRegForm, LoginForm
 
@@ -147,6 +147,10 @@ def teacherRegister():
 # Login page
 @users_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        # Redirect the user to an unauthorised notice!
+        return render_template('403.html')
+
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -185,17 +189,8 @@ def account():
                            user=username, SIC=sic, schoolName=schoolName, role=current_user.Role.capitalize())
 
 
-# view turtle game
-@users_blueprint.route('/turtleGame')
-@login_required
-def turtleGame():
-    return render_template('turtleGame.html')
-
-
-
 # home page when not logged in
 @users_blueprint.route('/index')
-@login_required
 def index():
     return render_template('index.html')
 

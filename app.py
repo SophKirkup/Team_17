@@ -1,7 +1,7 @@
 # IMPORTS
 import socket
 from functools import wraps
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
 
@@ -25,7 +25,7 @@ def requires_roles(*roles):
     def wrapper(f):
         @wraps(f)
         def wrapped(*args, **kwargs):
-            if current_user.role not in roles:
+            if current_user.Role not in roles:
                 # Redirect the user to an unauthorised notice!
                 return render_template('403.html')
             return f(*args, **kwargs)
@@ -54,9 +54,11 @@ def page_forbidden(error):
 def page_not_found(error):
     return render_template('404.html'), 404
 
+
 @app.errorhandler(405)
-def Method_not_allowed(e):
+def method_not_allowed(e):
     return render_template('405.html'), 405
+
 
 @app.errorhandler(500)
 def internal_error(error):
