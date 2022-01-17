@@ -2,55 +2,55 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 
 <body class="backgroundImage">
-    <div class="computer">
-        <div class="nav allignRight">
+<div class="computer">
+    <div class="nav allignRight">
 
-        {% if current_user.is_authenticated %}
+        {% if True %}
             <div class="dropdown">
                 <form action="{{ url_for('students.account') }}">
-                    <button type="submit" >Home page</button>
+                    <button type="submit">Home page</button>
                 </form>
             </div>
 
             <div class="dropdown">
                 <form action="{{ url_for('leaderboard.leaderboard') }}">
-                    <button type="submit" >Leaderboards</button>
+                    <button type="submit">Leaderboards</button>
                 </form>
             </div>
 
-            {% if current_user.Role=='student'%}
+            {% if current_user.Role=='student' %}
                 <div class="dropdown">
                     <form action="{{ url_for('games.turtleGame') }}">
-                        <button type="submit" >Turtle swim</button>
+                        <button type="submit">Turtle swim</button>
                     </form>
                 </div>
 
                 <div class="dropdown">
                     <form action="{{ url_for('games.pollutionGame') }}">
-                        <button type="submit" >Pollution Game</button>
+                        <button type="submit">Pollution Game</button>
 
                     </form>
                 </div>
             {% endif %}
 
-            {% if current_user.Role=='parent'%}
+            {% if current_user.Role=='parent' %}
                 <div class="dropdown">
                     <form action="{{ url_for('parents.parent_view_student') }}">
-                        <button type="submit" >View your child</button>
+                        <button type="submit">View your child</button>
                     </form>
                 </div>
             {% endif %}
 
             <div class="dropdown">
                 <form action="{{ url_for('students.logout') }}">
-                    <button type="submit" >Logout</button>
+                    <button type="submit">Logout</button>
                 </form>
             </div>
 
@@ -60,13 +60,13 @@
         {% if not current_user.is_authenticated %}
             <div class="dropdown">
                 <form action="{{ url_for('students.index') }}">
-                    <button type="submit" >Home page</button>
+                    <button type="submit">Home page</button>
                 </form>
             </div>
 
             <div class="dropdown">
                 <form action="{{ url_for('students.login') }}">
-                    <button class="loginSize" type="submit" >Login</button>
+                    <button class="loginSize" type="submit">Login</button>
                 </form>
             </div>
 
@@ -80,20 +80,20 @@
             </div>
         {% endif %}
 
-        </div>
-
-        {% block content %}
-        {% endblock %}
-
     </div>
 
-    <div class="mobile">
-        <div class="mobileBox">
-            <h2 class="center">
-                Sorry this page is not mobile compatible
-            </h2>
-        </div>
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<div class="mobile">
+    <div class="mobileBox">
+        <h2 class="center">
+            Sorry this page is not mobile compatible
+        </h2>
     </div>
+</div>
 
 </body>
 

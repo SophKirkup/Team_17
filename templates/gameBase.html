@@ -1,80 +1,99 @@
- <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | - Save The Turtles!</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <link rel="shortcut icon" href={{ url_for('static', filename='PollutionGame/TemplateData/favicon.ico')}}>
-    <link rel="stylesheet" href={{ url_for('static', filename='PollutionGame/TemplateData/style.css')}}>
-  </head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <link rel="shortcut icon" href={{ url_for('static', filename='PollutionGame/TemplateData/favicon.ico') }}>
+    <link rel="stylesheet" href={{ url_for('static', filename='PollutionGame/TemplateData/style.css') }}>
+</head>
 
-  <body>
+<body>
 
-  <div class="computerGame">
-        <div class="nav allignRight">
+<div class="computerGame">
+    <div class="nav allignRight">
 
-            {% if current_user.is_authenticated %}
-              <div class="dropdown">
-                    <form action="{{ url_for('games.turtleGame') }}">
-                        <button type="submit" >Turtle swim</button>
-                    </form>
-              </div>
-
+        {% if current_user.is_authenticated %}
             <div class="dropdown">
-                <form action="{{ url_for('games.pollutionGame') }}">
-                    <button type="submit" >Pollution game</button>
+                <form action="{{ url_for('students.account') }}">
+                    <button type="submit">Home page</button>
                 </form>
             </div>
+
+            <div class="dropdown">
+                <form action="{{ url_for('leaderboard.leaderboard') }}">
+                    <button type="submit">Leaderboards</button>
+                </form>
+            </div>
+
+            {% if current_user.Role=='student' %}
                 <div class="dropdown">
-                    <form action="{{ url_for('students.account') }}">
-                        <button type="submit" >Home page</button>
+                    <form action="{{ url_for('games.turtleGame') }}">
+                        <button type="submit">Turtle swim</button>
                     </form>
                 </div>
 
                 <div class="dropdown">
-                    <form action="{{ url_for('students.logout') }}">
-                        <button type="submit" >Logout</button>
+                    <form action="{{ url_for('games.pollutionGame') }}">
+                        <button type="submit">Pollution Game</button>
+
                     </form>
                 </div>
             {% endif %}
 
-
-            {% if not current_user.is_authenticated %}
+            {% if current_user.Role=='parent' %}
                 <div class="dropdown">
-                    <form action="{{ url_for('students.index') }}">
-                        <button type="submit" >Home page</button>
+                    <form action="{{ url_for('parents.parent_view_student') }}">
+                        <button type="submit">View your child</button>
                     </form>
                 </div>
+            {% endif %}
 
-                <div class="dropdown">
-                    <form action="{{ url_for('students.login') }}">
-                        <button class="loginSize" type="submit" >Login</button>
-                    </form>
-                </div>
+            <div class="dropdown">
+                <form action="{{ url_for('students.logout') }}">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
 
-                <div class="dropdown">
-                    <button class="registerSize">Register</button>
-                    <div class="dropdown-content">
-                        <a href="{{ url_for('students.studentRegister') }}">Student register</a>
-                        <a href="{{ url_for('students.teacherRegister') }}">Teacher register</a>
-                        <a href="{{ url_for('students.parentRegister') }}">Parent register</a>
-                    </div>
-                </div>
         {% endif %}
 
-        </div>
 
-        {% block content %}
-        {% endblock %}
+        {% if not current_user.is_authenticated %}
+            <div class="dropdown">
+                <form action="{{ url_for('students.index') }}">
+                    <button type="submit">Home page</button>
+                </form>
+            </div>
 
-  </div>
+            <div class="dropdown">
+                <form action="{{ url_for('students.login') }}">
+                    <button class="loginSize" type="submit">Login</button>
+                </form>
+            </div>
 
-    <div class="mobileGame">
-        <div class="mobileBox">
-            <h3 class="alignCenter">
-                Sorry this page is not mobile compatible <br> <br>
-                The screen has to be atleast 960 by 720 pixels
-            </h3>
-        </div>
+            <div class="dropdown">
+                <button class="registerSize">Register</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('students.studentRegister') }}">Student register</a>
+                    <a href="{{ url_for('students.teacherRegister') }}">Teacher register</a>
+                    <a href="{{ url_for('students.parentRegister') }}">Parent register</a>
+                </div>
+            </div>
+        {% endif %}
+
     </div>
 
-  </body>
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<div class="mobileGame">
+    <div class="mobileBox">
+        <h3 class="alignCenter">
+            Sorry this page is not mobile compatible <br> <br>
+            The screen has to be atleast 960 by 720 pixels
+        </h3>
+    </div>
+</div>
+
+</body>
