@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="register">
-        <p class="loginfield" id='name'><b>Student register</b></p>
+        <p class="inputField" id='name'><b>Student register</b></p>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <div class="notification is-danger">
@@ -14,44 +14,44 @@
         {% endwith %}
 
         <form method="POST">
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.csrf_token() }}
                 {{ form.username(class="input", placeholder="Username") }}
                 {% for error in form.username.errors %}
                     {{ error }}
                 {% endfor %}
             </div>
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.firstname(class="input", placeholder="First Name") }}
                 {% for error in form.firstname.errors %}
                     {{ error }}
                 {% endfor %}
             </div>
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.lastname(class="input", placeholder="Last Name") }}
                 {% for error in form.lastname.errors %}
                     {{ error }}
                 {% endfor %}
             </div>
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.password(class="input", placeholder="Password") }}
                 {% for error in form.password.errors %}
                     {{ error }}
                 {% endfor %}
             </div>
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.confirm_password(class="input", placeholder="Confirm Password") }}
                 {% for error in form.confirm_password.errors %}
                     {{ error }}
                 {% endfor %}
             </div>
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.sic(class="input", placeholder="SIC (School Individual Code") }}
                 {% for error in form.sic.errors %}
                     {{ error }}
                 {% endfor %}
             </div>
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.teacher_id(class="input", placeholder="Teacher ID") }}
                 {% for error in form.teacher_id.errors %}
                     {{ error }}

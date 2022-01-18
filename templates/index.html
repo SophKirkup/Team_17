@@ -3,20 +3,20 @@
 {% block content %}
 
     <div class="welcome">
-        <h1 class="horizontalAlign">
+        <h1 class="center">
             Welcome to your Virtual Environment!
         </h1>
 
-        <div class="welcomeLoginHeight">
-            <b class="homeOffer buttonAllign">User login</b>
+        <div class="indexLoginPosition">
+            <b class="indexPaddingLeft indexButtonAlign">User login</b>
             <a class="button4" href="{{ url_for('students.login') }}">Login</a>
         </div>
 
-        <div class="welcomeRegisterHeight">
-            <b class="homeOffer">Register as:</b>
-            <a class="button3" href="{{ url_for('students.student_register') }}">Student</a>
-            <a class="button3" href="{{ url_for('students.teacher_register') }}">Teacher</a>
-            <a class="button3" href="{{ url_for('students.parent_register') }}">Parent</a>
+        <div class="indexRegisterPosition">
+            <b class="indexPaddingLeft">Register as:</b>
+            <a class="button1" style="padding-right: 20px" href="{{ url_for('students.student_register') }}">Student</a>
+            <a class="button1" style="padding-right: 20px" href="{{ url_for('students.teacher_register') }}">Teacher</a>
+            <a class="button1" style="padding-right: 20px" href="{{ url_for('students.parent_register') }}">Parent</a>
         </div>
     </div>
 {% endblock %}
