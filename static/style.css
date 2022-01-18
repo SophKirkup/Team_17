@@ -1,17 +1,20 @@
 body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
     font-family: "Times New Roman";
 }
 
+/*A class for background image to be full window size*/
 .backgroundImage {
-	background-image: url("sea.png");
-	background-size: cover;
-	background-attachment: fixed;
+    background-image: url("sea.png");
+    background-size: cover;
+    background-attachment: fixed;
 }
 
+/*Box types*/
+/*Login page box*/
 .login {
-    background-color: rgba(201,248,255,255);
+    background-color: rgba(201, 248, 255, 255);
     color: blue;
     height: 240px;
     width: 300px;
@@ -19,29 +22,47 @@ body {
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    border: 9px solid rgba(37,97,147,255);
+    border: 9px solid rgba(37, 97, 147, 255);
     padding: 10px;
-    box-shadow: 5px 10px rgba(29,74,112,255);
+    box-shadow: 5px 10px rgba(29, 74, 112, 255);
     border-radius: 3%;
 }
 
+/*Register page box for student and parent pages*/
 .register {
-    background-color: rgba(201,248,255,255);
+    background-color: rgba(201, 248, 255, 255);
     color: blue;
-    height: 420px;
+    height: 460px;
     width: 300px;
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    border: 9px solid rgba(37,97,147,255);
+    border: 9px solid rgba(37, 97, 147, 255);
     padding: 10px;
-    box-shadow: 5px 10px rgba(29,74,112,255);
+    box-shadow: 5px 10px rgba(29, 74, 112, 255);
     border-radius: 3%;
 }
 
+/*Register page box for teacher page*/
+.registerTeacher {
+    background-color: rgba(201, 248, 255, 255);
+    color: blue;
+    height: 400px;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border: 9px solid rgba(37, 97, 147, 255);
+    padding: 10px;
+    box-shadow: 5px 10px rgba(29, 74, 112, 255);
+    border-radius: 3%;
+}
+
+/*Home page box*/
 .welcome {
-    background-color: rgba(201,248,255,255);
+    background-color: rgba(201, 248, 255, 255);
     color: black;
     font-size: 20px;
     height: 300px;
@@ -50,14 +71,15 @@ body {
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    border: 9px solid rgba(37,97,147,255);
+    border: 9px solid rgba(37, 97, 147, 255);
     padding: 10px;
-    box-shadow: 5px 10px rgba(29,74,112,255);
+    box-shadow: 5px 10px rgba(29, 74, 112, 255);
     border-radius: 3%;
 }
 
+/*Account page box*/
 .accountBox {
-    background-color: rgba(201,248,255,255);
+    background-color: rgba(201, 248, 255, 255);
     color: black;
     font-size: 20px;
     height: 240px;
@@ -66,27 +88,29 @@ body {
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    border: 9px solid rgba(37,97,147,255);
+    border: 9px solid rgba(37, 97, 147, 255);
     padding: 10px;
-    box-shadow: 5px 10px rgba(29,74,112,255);
+    box-shadow: 5px 10px rgba(29, 74, 112, 255);
     border-radius: 3%;
 }
 
+/*Leaderboard page box*/
 .leaderboardBox {
-    background-color: rgba(201,248,255,255);
+    background-color: rgba(201, 248, 255, 255);
     color: black;
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    border: 9px solid rgba(37,97,147,255);
+    border: 9px solid rgba(37, 97, 147, 255);
     padding: 10px;
-    box-shadow: 5px 10px rgba(29,74,112,255);
+    box-shadow: 5px 10px rgba(29, 74, 112, 255);
     border-radius: 3%;
 }
 
+/*Error message box*/
 .errorBox {
-    background-color: rgba(201,248,255,255);
+    background-color: rgba(201, 248, 255, 255);
     color: black;
     font-size: 26px;
     height: 80px;
@@ -95,44 +119,41 @@ body {
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    border: 9px solid rgba(37,97,147,255);
+    border: 9px solid rgba(37, 97, 147, 255);
     padding: 10px;
-    box-shadow: 5px 10px rgba(29,74,112,255);
+    box-shadow: 5px 10px rgba(29, 74, 112, 255);
     border-radius: 3%;
     font-weight: bold;
     text-align: center;
 
 }
 
+/*Box displayed on mobile version of the platform*/
 .mobileBox {
-    background-color: rgba(201,248,255,255);
+    background-color: rgba(201, 248, 255, 255);
     color: black;
     font-size: 20px;
-    height: 160px;
+    height: 120px;
     width: 220px;
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    border: 9px solid rgba(37,97,147,255);
+    border: 9px solid rgba(37, 97, 147, 255);
     padding: 10px;
-    box-shadow: 5px 10px rgba(29,74,112,255);
+    box-shadow: 5px 10px rgba(29, 74, 112, 255);
     border-radius: 3%;
 }
 
-.loginImage {
-	width: 100px;
-	height: 100px;
-	border-radius: 80%;
+/*An input field box*/
+.inputField {
+    padding: 0;
+    margin: 10px;
+    text-align: center;
 }
 
-.loginfield {
-	padding: 0;
-	margin: 10px;
-	text-align: center;
-}
-
-.account {
+/*A class used to display account information*/
+.accountInfo {
     text-align: left;
     margin-left: 20px;
     padding-left: 10px;
@@ -141,59 +162,55 @@ body {
 }
 
 .login a {
-	color: black;
+    color: black;
 }
 
 .login a:hover {
-	color: blue;
+    color: blue;
 }
 
 .login input {
-	width: 90%;
+    width: 90%;
 }
 
-p{
-	font-size: 30px;
-	color: rgba(21, 56, 84, 255);
+p {
+    font-size: 30px;
+    color: rgba(21, 56, 84, 255);
 }
 
 .button1 {
-    background-color: rgba(0,206,20,255);
+    background-color: rgba(0, 206, 20, 255);
     color: white;
     padding: 14px 20px;
     margin: 8px;
     border: none;
     cursor: pointer;
     width: 70%;
-    border: 4px solid rgba(0,142,14,255);
+    border: 4px solid rgba(0, 142, 14, 255);
     padding: 10px;
-    box-shadow: 4px 3px rgba(0,51,5,255);
+    box-shadow: 4px 3px rgba(0, 51, 5, 255);
     border-radius: 5%;
+    text-decoration: none;
 }
 
 .button1:hover {
-    background-color: rgb(4,194,20);
+    background-color: rgb(4, 194, 20);
 }
 
+/*Centers an element*/
 .center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
     text-align: center;
 }
 
 input[type="text"],
 input[type="password"] {
-	border: 3px solid rgba(29, 74, 112, 255);
-	width: 100%;
-	height: 25px;
+    border: 3px solid rgba(29, 74, 112, 255);
+    width: 100%;
+    height: 25px;
 }
 
-.horizontalAlign{
-    text-align: center;
-}
 
-.header{
+.header {
     text-align: center;
     font-size: 28px;
     font-weight: bold;
@@ -208,49 +225,14 @@ input[type="password"] {
     padding-right: 10px;
 }
 
-.button2 {
-    width: 70px;
-    margin: 5px;
-    padding: 5px;
-    background-color: rgba(11, 13, 11, 0.33);
-    border: 4px solid rgba(11, 13, 11, 0.52);
-    border-radius: 10%;
-    cursor: pointer;
-}
 
-.button2:hover{
-    background-color: rgba(33, 151, 194, 255);
-    border: 4px solid rgba(37,97,147,255);
-}
-
-.button2:active {
-    background-color: rgba(33, 151, 194, 255);
-    border: 4px solid rgba(37,97,147,255);
-}
-
-#teacher, #student, #parent, #teacherHeader, #studentHeader, #parentHeader {
-    display: none;
-}
-
-.iFrame{
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-}
-
-iframe{
-    border: 0;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
-
+/*Dropdown button for the navigation bar*/
 .dropdown {
     display: inline-block;
     position: relative;
     width: 160px;
 }
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -258,9 +240,11 @@ iframe{
     overflow: auto;
     background-color: #fff;
 }
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 .dropdown-content a {
     display: block;
     font-size: 20px;
@@ -268,6 +252,7 @@ iframe{
     padding: 5px;
     text-decoration: none;
 }
+
 .dropdown-content a:hover {
     color: #FFFFFF;
     background-color: #00A4BD;
@@ -292,11 +277,7 @@ button:hover {
     height: 40px;
 }
 
-.loginSize {
-    width: 160px;
-}
-
-.registerSize {
+.navigationBarButton {
     width: 160px;
 }
 
@@ -316,65 +297,48 @@ button:hover {
     background-color: #00A4BD;
 }
 
-.homeOffer {
+.indexPaddingLeft {
     font-size: 26px;
     padding-right: 3px;
 }
 
-.button3 {
-    background-color: rgba(0,206,20,255);
-    color: white;
-    padding: 14px 20px;
-    margin: 8px;
-    border: none;
-    cursor: pointer;
-    border: 4px solid rgba(0,142,14,255);
-    padding: 10px;
-    box-shadow: 4px 3px rgba(0,51,5,255);
-    border-radius: 5%;
-    text-decoration: none;
-    padding-right: 20px;
-}
-
-.button3:hover {
-    background-color: rgb(4,194,20);
-}
-
-.welcomeLoginHeight {
+/*Changes index page Login button position*/
+.indexLoginPosition {
     padding-top: 20px;
     position: relative;
 }
 
-.welcomeRegisterHeight {
+/*Changes index page Register buttons position*/
+.indexRegisterPosition {
     padding-top: 50px;
     position: relative;
 }
 
-.buttonAllign {
+.indexButtonAlign {
     padding-right: 28px;
 }
 
-.allignRight{
+.allignRight {
     text-align: right;
 }
 
 .button4 {
     padding: 12px 138px;
-    background-color: rgba(0,206,20,255);
+    background-color: rgba(0, 206, 20, 255);
     color: white;
     margin-left: 0;
     cursor: pointer;
-    border: 4px solid rgba(0,142,14,255);
-    box-shadow: 4px 3px rgba(0,51,5,255);
+    border: 4px solid rgba(0, 142, 14, 255);
+    box-shadow: 4px 3px rgba(0, 51, 5, 255);
     border-radius: 5%;
     text-decoration: none;
 }
 
 .button4:hover {
-    background-color: rgb(4,194,20);
+    background-color: rgb(4, 194, 20);
 }
 
-.mobile{
+.mobile {
     display: none;
 }
 
@@ -384,19 +348,22 @@ button:hover {
         display: none;
     }
 
-    .mobile{
+    .mobile {
         display: block;
     }
 }
 
+/*Computer version game display style*/
 .computerGame {
     display: block;
 }
 
+/*Mobile version game display style*/
 .mobileGame {
     display: none;
 }
 
+/*Enters mobile version*/
 @media screen and (max-width: 960px), screen and (max-height: 720px) {
 
     .computerGame {
@@ -406,12 +373,4 @@ button:hover {
     .mobileGame {
         display: block;
     }
-}
-
-.alignCenter {
-    text-align: center;
-    margin-top: 1px;
-    padding-top: 1px;
-    font-size: 22px;
-    font-family: "Times New Roman";
 }

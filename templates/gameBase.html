@@ -15,26 +15,26 @@
         {% if current_user.is_authenticated %}
             <div class="dropdown">
                 <form action="{{ url_for('students.account') }}">
-                    <button type="submit">Home page</button>
+                    <button class="navigationBarButton" type="submit">Home page</button>
                 </form>
             </div>
 
             <div class="dropdown">
                 <form action="{{ url_for('leaderboard.leaderboard') }}">
-                    <button type="submit">Leaderboards</button>
+                    <button class="navigationBarButton" type="submit">Leaderboards</button>
                 </form>
             </div>
 
             {% if current_user.Role=='student' %}
                 <div class="dropdown">
                     <form action="{{ url_for('games.turtle_game') }}">
-                        <button type="submit">Turtle swim</button>
+                        <button class="navigationBarButton" type="submit">Turtle swim</button>
                     </form>
                 </div>
 
                 <div class="dropdown">
                     <form action="{{ url_for('games.pollution_game') }}">
-                        <button type="submit">Pollution Game</button>
+                        <button class="navigationBarButton" type="submit">Pollution Game</button>
 
                     </form>
                 </div>
@@ -43,14 +43,14 @@
             {% if current_user.Role=='parent' %}
                 <div class="dropdown">
                     <form action="{{ url_for('parents.parent_view_student') }}">
-                        <button type="submit">View your child</button>
+                        <button class="navigationBarButton" type="submit">View your child</button>
                     </form>
                 </div>
             {% endif %}
 
             <div class="dropdown">
                 <form action="{{ url_for('students.logout') }}">
-                    <button type="submit">Logout</button>
+                    <button class="navigationBarButton" type="submit">Logout</button>
                 </form>
             </div>
 
@@ -60,18 +60,18 @@
         {% if not current_user.is_authenticated %}
             <div class="dropdown">
                 <form action="{{ url_for('students.index') }}">
-                    <button type="submit">Home page</button>
+                    <button class="navigationBarButton" type="submit">Home page</button>
                 </form>
             </div>
 
             <div class="dropdown">
                 <form action="{{ url_for('students.login') }}">
-                    <button class="loginSize" type="submit">Login</button>
+                    <button class="navigationBarButton" type="submit">Login</button>
                 </form>
             </div>
 
             <div class="dropdown">
-                <button class="registerSize">Register</button>
+                <button class="navigationBarButton">Register</button>
                 <div class="dropdown-content">
                     <a href="{{ url_for('students.studentRegister') }}">Student register</a>
                     <a href="{{ url_for('students.teacherRegister') }}">Teacher register</a>
@@ -90,10 +90,10 @@
 
 <div class="mobileGame">
     <div class="mobileBox">
-        <h3 class="alignCenter">
-            Sorry this page is not mobile compatible <br> <br>
-            The screen has to be atleast 960 by 720 pixels
-        </h3>
+        <div class="Center">
+            <b>Sorry this page is not mobile compatible <br> <br>
+                The screen has to be atleast 960 by 720 pixels</b>
+        </div>
     </div>
 </div>
 

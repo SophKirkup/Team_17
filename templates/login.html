@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="login">
-        <p class="loginfield" id='name'><b>Login</b></p>
+        <p class="inputField" id='name'><b>Login</b></p>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <div class="notification is-danger">
@@ -13,7 +13,7 @@
         {% endwith %}
 
         <form method="POST">
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.csrf_token() }}
                 {{ form.username(class="input", placeholder="Username") }}
                 {% for error in form.username.errors %}
@@ -21,7 +21,7 @@
                 {% endfor %}
             </div>
 
-            <div class="loginfield">
+            <div class="inputField">
                 {{ form.password(class="input", placeholder="Password") }}
                 {% for error in form.password.errors %}
                     {{ error }}
