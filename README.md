@@ -21,7 +21,15 @@ will dynamically assign the port to one which is free.
 scores to the server/database, so scores will not be saved.**
 
 ### Pollution Game
+In this game, the player controls a net with their mouse and must
+catch pollution that falls from the sky before it reaches the ocean.
+Lives are represented by turtles, and when all lives are lost the game 
+is over.
+
 All sprites used in this game were made by us.
 
 ### Turtle Game
-
+In this game, the player is a turtle controlled by the up and down arrow
+ keys. Plastics will appear from the right of the screen, and the player must 
+ avoid them. Points are gained over time and if the turtle hits the plastic,
+ the game ends.
