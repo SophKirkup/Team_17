@@ -79,7 +79,7 @@ public class UIScript : MonoBehaviour
     void SubmitScore(int score) {
         if(score > 0) {StartCoroutine(PostScore(score));}  // only send positive none zero scores, stops
                                                            // divide by zero errors. score of zero does not 
-                                                           // need to be sumbitted, so prevents unnessasary
+                                                           // need to be submitted, so prevents unnecessary
                                                            // http requests
     }
 
