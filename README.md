@@ -1,5 +1,24 @@
 # Virtual_Environmentalists - Sea Savers website
 
+The main body of the website is created in Python and HTML, with the Python web 
+framework Flask used. To run the app you will need to install the dependencies 
+in the requirements.txt file - use 'pip install -r requirements.txt'
+
+For testing purposes the following accounts can be used,
+
+Student:
+- USERNAME - student1
+- PASSWORD - learn1
+
+Teacher:
+- EMAIL: teach@school.com
+- PASSWORD: teach1
+
+Parent:
+- EMAIL: parent@1.com
+- PASSWORD: parent1
+
+
 ## Games
 
 The games have been created in Unity, the files in the `../static/PollutionGame/` 
