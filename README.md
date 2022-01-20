@@ -8,7 +8,7 @@ For testing purposes the following accounts can be used,
 
 Student:
 - USERNAME - student1
-- PASSWORD - 12345
+- PASSWORD - learn1
 
 Teacher:
 - EMAIL: teach@school.com
