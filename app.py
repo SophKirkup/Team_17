@@ -4,11 +4,11 @@ from functools import wraps
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
+from config import database_connect
 
 # CONFIG
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://csc2033_team17:Bat[RiceDeer' \
-                                        '@localhost:3500/csc2033_team17'
+app.config['SQLALCHEMY_DATABASE_URI'] = database_connect
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'LongAndRandomSecretKey'
 

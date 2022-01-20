@@ -38,18 +38,18 @@ def student_register():
             flash('That SIC does not exist')
             return render_template('studentRegister.html', form=form)
 
-        hashedPassword = generate_password_hash(form.password.data)
+        hashed_password = generate_password_hash(form.password.data)
 
         # create a new user with the form data
         new_user = Student(FirstName=form.firstname.data,
                            LastName=form.lastname.data,
                            SIC=form.sic.data,
                            TeacherID=form.teacher_id.data,
-                           Password=hashedPassword,
+                           Password=hashed_password,
                            Username=form.username.data)
 
         new_student = User(Username=form.username.data,
-                           Password=hashedPassword,
+                           Password=hashed_password,
                            Role='student')
 
         # add the new user to the database
@@ -85,7 +85,7 @@ def parent_register():
             flash('That Student does not exist')
             return render_template('parentRegister.html', form=form)
 
-        hashedPassword = generate_password_hash(form.password.data)
+        hashed_password = generate_password_hash(form.password.data)
 
         # create a new user with the form data
         new_user = Parent(FirstName=form.firstname.data,
@@ -93,10 +93,10 @@ def parent_register():
                           SIC=form.sic.data,
                           StudentID=form.student_id.data,
                           Email=form.email.data,
-                          Password=hashedPassword)
+                          Password=hashed_password)
 
         new_parent = User(Username=form.email.data,
-                          Password=hashedPassword,
+                          Password=hashed_password,
                           Role='parent')
 
         # add the new user to the database
@@ -124,17 +124,17 @@ def teacher_register():
             flash('That SIC does not exist')
             return render_template('teacherRegister.html', form=form)
 
-        hashedPassword = generate_password_hash(form.password.data)
+        hashed_password = generate_password_hash(form.password.data)
 
         # create a new user with the form data
         new_user = Teacher(FirstName=form.firstname.data,
                            LastName=form.lastname.data,
                            SIC=form.sic.data,
-                           Password=hashedPassword,
+                           Password=hashed_password,
                            Email=form.email.data)
 
         new_teacher = User(Username=form.email.data,
-                           Password=hashedPassword,
+                           Password=hashed_password,
                            Role='teacher')
 
         # add the new user to the database
