@@ -12,6 +12,12 @@
 <div class="computer">
     <div class="nav allignRight">
 
+        <div class="dropdown">
+                <form action="{{ url_for('students.about') }}">
+                    <button class="navigationBarButton" type="submit">About</button>
+                </form>
+        </div>
+
         {% if current_user.is_authenticated %}
             <div class="dropdown">
                 <form action="{{ url_for('students.account') }}">
