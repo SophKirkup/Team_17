@@ -18,7 +18,7 @@ class Student(db.Model, UserMixin):
     def __init__(self, FirstName, LastName, TeacherID, SIC, Password, Username):
         self.FirstName = FirstName
         self.LastName = LastName
-        self.Points = None
+        self.Points = 0
         self.TeacherID = TeacherID
         self.SIC = SIC
         self.Password = Password
