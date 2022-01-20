@@ -191,6 +191,12 @@ def account():
                            user=username, SIC=sic, schoolName=school_name, role=current_user.Role.capitalize())
 
 
+# about goal 14 page
+@users_blueprint.route('/about')
+def about():
+    return render_template('about.html')
+
+
 # home page when not logged in
 @users_blueprint.route('/index')
 def index():
